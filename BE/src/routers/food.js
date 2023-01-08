@@ -71,6 +71,13 @@ router.get('/me/food', auth, async (req,res) => {
 
     }
 
+    if(req.query.limit){
+        var limit = Number(req.query.limit)
+    }
+    if(req.query.skip){
+        var skip = Number(req.query.skip)
+    }
+
     if(req.query.dateB) {
         if (!match.createdAt) {
             match.createdAt = {}
@@ -92,6 +99,10 @@ router.get('/me/food', auth, async (req,res) => {
         await req.user.populate({
             path: 'food',
             match: match,
+            options: {
+                skip: parseInt(req.query.skip),
+                limit: parseInt(req.query.limit),
+            },
     }).execPopulate()
         res.send(req.user.food)
     } catch(e) {
