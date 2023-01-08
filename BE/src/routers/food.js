@@ -63,38 +63,57 @@ router.get('/me/food', auth, async (req,res) => {
     const match = {}
     const sort = {}
 
-    if(req.query.date) {
-        match.gte = /^(.+?),/.exec(req.query.date)[1]
-        match.lte = /[^,]*$/.exec(req.query.date)[0]
-        console.log(match.createdAt)
+    if(req.query.dateA) {
+        if (!match.createdAt) {
+            match.createdAt = {}
+        }
+        match.createdAt[/\[(.*?)\]/.exec(req.query.dateA)[1]] = /\((.*?)\)/.exec(req.query.dateA)[1]
+
+    }
+
+    if(req.query.dateB) {
+        if (!match.createdAt) {
+            match.createdAt = {}
+        }
+        match.createdAt[/\[(.*?)\]/.exec(req.query.dateB)[1]] = /\((.*?)\)/.exec(req.query.dateB)[1]
     }
 
     if (req.query.completed) {
         match.completed = req.query.completed === 'true'
     }
 
-    // if (req.query.sortBy) {
-    //     const parts = req.query.sortBy.split('_')
-    //     sort[parts[0]] = parts[1] === 'desc' ? -1: 1
-    // }
-
-    // req.query.completed
-
-    console.log(moment(match.afterDate))
+    if (req.query.sortBy) {
+        const parts = req.query.sortBy.split('_')
+        sort[parts[0]] = parts[1] === 'desc' ? -1: 1
+    }
+    req.query.completed
     console.log(match)
     try {
         await req.user.populate({
             path: 'food',
-            match: {
-                createdAt: {
-                    $gte: match.gte,
-                    $lte: match.lte
-                }
-            },
+            match: match,
     }).execPopulate()
         res.send(req.user.food)
     } catch(e) {
         res.status(500).send()
+    }
+})
+
+router.delete('/me/food/:id', async (req,res ) => {
+    console.log("ok")
+    const _id = req.params.id;
+
+    try {
+        const food = await Food.findOneAndDelete({ 'id' : _id})
+
+        if(!food){
+            return res.status(404).send()
+        }
+        res.send(food)
+    } catch(e) {
+        console.log(e)
+        res.status(400).send(e)
+
     }
 })
 

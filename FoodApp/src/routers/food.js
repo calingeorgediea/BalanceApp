@@ -2,11 +2,13 @@ const express = require('express')
 const router = new express.Router()
 const Food = require('../models/food')
 const multer = require('multer')
+var cors = require('cors')
+
 // const sharp = require('sharp')
 // const { sendWelcomeEmail,sendCancelationEmail } = require('../emails/account')
 
 // Add new food item
-router.post('/food', async (req,res) => {
+router.post('/food', cors(), async (req,res) => {
     const match = {}
     const food = new Food(req.body)
     try {
