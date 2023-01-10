@@ -1,8 +1,7 @@
 version: '3.7'
 services:
-  BE:
+  be:
     build: 
-      image: balanceapp-be
       context: ./BE
       dockerfile: Dockerfile
     ports:
