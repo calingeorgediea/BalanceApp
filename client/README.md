@@ -5,4 +5,5 @@ npm install (sunt multe dependente inutile si o sa dureze putin dar nu stau sa m
 ## Start server
 
 npm start
-localhost:4200 e siteul
+
+site: localhost:4200
