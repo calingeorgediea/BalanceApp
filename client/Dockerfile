@@ -1,12 +1,10 @@
-FROM node:14-alpine 
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+FROM nginx:alpine
 
-FROM node:14-alpine
-COPY --from=0 /app/dist/client /app
-COPY --from=0 /app/package*.json /app
-RUN npm install 
-CMD [ "npm", "start" ]
+WORKDIR /etc/nginx
+
+COPY ./dist/client /usr/share/nginx/html/
+COPY ./nginx.conf ./conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
