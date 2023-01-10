@@ -1,5 +1,20 @@
 version: '3.7'
 services:
+  client:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    links:
+      - be
+      - foodapp
+      
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+      
   be:
     build: 
       context: ./BE
@@ -18,20 +33,7 @@ services:
     links:
       - mongodb
 
-  client:
-    build: 
-      context: ./client
-      dockerfile: Dockerfile
-    ports:
-      - "4200:80"
-    links:
-      - be
-      - foodapp
-      
-  mongodb:
-    image: mongo
-    ports:
-      - "27017:27017"
+  
 
 
 
