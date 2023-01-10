@@ -9,12 +9,16 @@ services:
     links:
       - be
       - foodapp
+    networks:
+      - mynetwork
       
   mongodb:
     image: mongo
     restart: always
     ports:
       - "27017:27017"
+    networks:
+      - mynetwork
       
   be:
     build: 
@@ -24,6 +28,8 @@ services:
       - "3000:3000"
     links:
       - mongodb
+    networks:
+      - mynetwork
       
   foodapp:
     build: 
@@ -33,6 +39,13 @@ services:
       - "3001:3001"
     links:
       - mongodb
+    networks:
+      - mynetwork
+      
+  networks:
+    mynetwork:
+      
+  
 
   
 
