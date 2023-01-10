@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    networks:
-      - mynetwork
+    links:
+      - mongodb
       
   foodapp:
     build: 
@@ -15,8 +15,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3001:3001"
-    networks:
-      - mynetwork
+    links:
+      - mongodb
 
   client:
     build: 
@@ -24,9 +24,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4200:80"
-    networks:
-      - mynetwork
+    links:
+      - be
+      - foodapp
+      
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
 
-networks:
-  mynetwork:
+
 
