@@ -8,13 +8,22 @@ services:
       - "3000:3000"
     networks:
       - mynetwork
+      
+  foodapp:
+    build: 
+      context: ./FoodApp
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    networks:
+      - mynetwork
 
   client:
     build: 
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "4200:4200"
+      - "80:4200"
     networks:
       - mynetwork
 
