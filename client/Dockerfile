@@ -1,20 +1,10 @@
-FROM node:14
+FROM nginx:alpine
 
-# Create app directory
-WORKDIR /usr/src/app
+WORKDIR /etc/nginx
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+COPY ./build/ /usr/share/nginx/html/
+COPY ./nginx.conf ./conf.d/default.conf
 
-RUN npm install
-
-# Copy the rest of the application source code
-COPY . .
-
-RUN npm run build
-
-# Serve the app using an nginx image
-FROM nginx:1.19
-COPY --from=0 /usr/src/app/ /usr/share/nginx/html/
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
