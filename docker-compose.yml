@@ -10,7 +10,7 @@ services:
       - be
       - foodapp
     networks:
-      - mynetwork
+      - network2
       
   mongodb:
     image: mongo
@@ -18,7 +18,8 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - mynetwork
+      - network1
+      - network2
       
   be:
     build: 
@@ -29,7 +30,7 @@ services:
     links:
       - mongodb
     networks:
-      - mynetwork
+      - network1
       
   foodapp:
     build: 
@@ -40,10 +41,11 @@ services:
     links:
       - mongodb
     networks:
-      - mynetwork
+      - network1
       
 networks:
-  mynetwork:
+  network1:
+  network2:
       
   
 
