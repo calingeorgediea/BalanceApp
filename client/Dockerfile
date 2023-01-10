@@ -6,8 +6,12 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
+RUN npm install
+
 # Copy the rest of the application source code
 COPY . .
+
+RUN npm run build
 
 # Serve the app using an nginx image
 FROM nginx:1.19
