@@ -1,0 +1,21 @@
+<div *ngIf="loggedIn else elseBlock">
+    <div>
+        Main Page
+        <button mat-raised-button class="btn btn-lg btn-login btn-info text-uppercase fw-bold mb-2" type="submit"
+        (click)="this.listInfoAboutMe()">List Info About Me!</button>
+    </div>
+    <div *ngIf="infoAboutMe">
+        {{infoAboutMe.mail}} {{infoAboutMe._id}} 
+    </div>
+    <div>
+        <button mat-raised-button class="btn btn-lg btn-login btn-info text-uppercase fw-bold mb-2" type="submit"
+        (click)="this.logout()">Log out</button>
+    </div>
+</div>
+
+<ng-template #elseBlock>
+    Not logged in go away
+</ng-template>
+
+
+

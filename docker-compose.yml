@@ -1,0 +1,55 @@
+version: '3.7'
+services:
+  client:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    links:
+      - be
+      - foodapp
+    networks:
+      - network2
+      
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - network1
+      - network2
+      
+  be:
+    build: 
+      context: ./BE
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+    networks:
+      - network1
+      
+  foodapp:
+    build: 
+      context: ./FoodApp
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    links:
+      - mongodb
+    networks:
+      - network1
+      
+networks:
+  network1:
+  network2:
+      
+  
+
+  
+
+
+
