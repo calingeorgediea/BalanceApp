@@ -16,12 +16,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainPageComponent,
+    SideMenuComponent,
   ],
   imports: [
     CommonModule,
