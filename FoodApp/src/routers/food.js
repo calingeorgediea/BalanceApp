@@ -13,7 +13,7 @@ router.post('/food', cors(), async (req,res) => {
     const food = new Food(req.body)
     try {
         await food.save()
-        res.status(201).send({user})
+        res.status(201).send({food})
     } catch(e) {
         res.status(400).send(e)
     }
@@ -61,7 +61,7 @@ router.get('/food', async (req,res) => {
     res.send(response)
 })
 
-router.get('/food/:id', async (req,res ) => {
+router.get('/food/:id', async (req,res) => {
     const _id = req.params.id;
     try {
         const food = await Food.findById(_id)
