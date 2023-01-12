@@ -1,0 +1,25 @@
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 10vh;
+}
+
+.user-information-box {
+    margin-top: 10vh;
+}
+
+.input-box {
+    margin-top: 5%;
+}
+
+.form-column {
+    padding-left: 5%;
+    padding-right: 5%;
+}
