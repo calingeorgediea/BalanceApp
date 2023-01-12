@@ -1,24 +1,5 @@
-version: '3.7'
-services:
-  jenkins:
-    image: jenkins/jenkins:lts
-    privileged: true
-    user: root
-    ports:
-      - 8080:8080
-      - 50000:50000
-    container_name: jenkins
-    volumes:
-      - jenkins_home:/var/jenkins_home
-      - //var/run/docker.sock:/var/run/docker.sock
-    deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 750M
-
-volumes:
-  jenkins_home:
+# version: '3.7'
+# services:
 #   client:
 #     build: 
 #       context: ./client
@@ -71,6 +52,52 @@ volumes:
   
 
   
+version: "3.7"
+services:
+  client:
+    # build: 
+    #   context: ./client
+    #   dockerfile: Dockerfile
+    image: balanceapp-client
+    ports:
+      - "4200:80"
+    networks:
+      - network2
+      
+  mongodb:
+    image: mongo:4.2.23
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - network1
+      - network2
+      
+  be:
+    # build: 
+    #   context: ./BE
+    #   dockerfile: Dockerfile
+    image: balanceapp-be
+    ports:
+      - "3000:3000"
+    networks:
+      - network1
+    depends_on:
+      - mongodb
+      
+  foodapp:
+    # build: 
+    #   context: ./FoodApp
+    #   dockerfile: Dockerfile
+    image: balanceapp-foodapp
+    ports:
+      - "3001:3001"
+    networks:
+      - network1
+      
+networks:
+  network1:
+  network2:
 
 
 
