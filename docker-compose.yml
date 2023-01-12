@@ -13,7 +13,7 @@ services:
       - network2
       
   mongodb:
-    image: mongo
+    image: mongo:4.2.23
     restart: always
     ports:
       - "27017:27017"
@@ -31,6 +31,8 @@ services:
       - mongodb
     networks:
       - network1
+    depends_on:
+      - mongodb
       
   foodapp:
     build: 
