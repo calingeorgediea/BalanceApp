@@ -1,5 +1,5 @@
 <div *ngIf="loggedIn else elseBlock">
-    <div>
+    <!-- <div>
         Main Page
         <button mat-raised-button class="btn btn-lg btn-login btn-info text-uppercase fw-bold mb-2" type="submit"
         (click)="this.listInfoAboutMe()">List Info About Me!</button>
@@ -10,6 +10,18 @@
     <div>
         <button mat-raised-button class="btn btn-lg btn-login btn-info text-uppercase fw-bold mb-2" type="submit"
         (click)="this.logout()">Log out</button>
+    </div> -->
+    <div class="container-fluid ps-md-0">
+        <div class="row g-0">
+            <div class="d-none d-md-flex col-md-4 col-lg-6">
+                <app-side-menu></app-side-menu>
+            </div>
+            <div class="col-md-8 col-lg-6 content">
+                <div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
