@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
                 }
             }
         },
+        losingGoal: {
+            type: Number,
+            default: 500,
+        },
         tokens: [{
             token: {
                 type: String,

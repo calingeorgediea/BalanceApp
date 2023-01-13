@@ -9,13 +9,15 @@ const log = console.log;
 const moment = require('moment')
 
 router.post('/food', auth, async(req,res) => {
-    const task = new Food({
+    const food = new Food({
         ...req.body,
+        remaining_kcal: req.user.losingGoal,
         owner: req.user._id
     })
+    console.log(req.user.kcal)
     try {
-        await task.save()
-        res.status(201).send(task)
+        await food.save()
+        res.status(201).send(food)
     } catch(e) {
         res.status(400).send(e)
     }
@@ -23,7 +25,6 @@ router.post('/food', auth, async(req,res) => {
 
 router.post('/me/food/:id', auth, async (req,res) => {
     if(req.body.qty){
-        console.log("req.query.qty" + req.body.qty)
         var qty = req.body.qty
     } else {
         var qty = 1;
@@ -116,7 +117,6 @@ router.delete('/me/food/:id', async (req,res ) => {
 
     try {
         const food = await Food.findOneAndDelete({ 'id' : _id})
-
         if(!food){
             return res.status(404).send()
         }
