@@ -109,7 +109,7 @@ router.patch('/food/:id',  async(req,res) => {
     }
 })
 
-router.get('/doctor', async (req,res) => {
+router.post('/doctor', async (req,res) => {
     try {
         const result = await recommender(req.body)
         res.status(201).send({result})

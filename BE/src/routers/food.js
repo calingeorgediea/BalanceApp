@@ -11,7 +11,7 @@ const moment = require('moment')
 router.post('/food', auth, async(req,res) => {
     const food = new Food({
         ...req.body,
-        remaining_kcal: req.user.losingGoal,
+        remaining_kcal: req.user.kcalGoal,
         owner: req.user._id
     })
     console.log(req.user.kcal)
