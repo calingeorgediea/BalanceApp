@@ -3,7 +3,7 @@ const router = new express.Router()
 const Food = require('../models/food')
 const multer = require('multer')
 var cors = require('cors')
-
+const recommender = require('../../utils/Recommender')
 // const sharp = require('sharp')
 // const { sendWelcomeEmail,sendCancelationEmail } = require('../emails/account')
 
@@ -108,4 +108,14 @@ router.patch('/food/:id',  async(req,res) => {
         res.status(400).send(e)
     }
 })
+
+router.get('/doctor', async (req,res) => {
+    try {
+        const result = await recommender(req.body)
+        res.status(201).send({result})
+    } catch(e) {
+        res.status(400).send(e)
+    }
+})
+
 module.exports = router
