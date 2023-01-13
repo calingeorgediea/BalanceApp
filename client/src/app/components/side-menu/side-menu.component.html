@@ -1,31 +1,33 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark menu">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <span class="fs-4">Balance.</span>
+    <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <span class="fs-2">Balance.</span>
     </a>
+    <div class="menu-list">
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="/home" class="nav-link active" aria-current="page">
           <mat-icon>home</mat-icon>
-          Home
+          <span class="button-text">Home</span>
         </a>
       </li>
       <li>
         <a href="#" class="nav-link text-white">
           <mat-icon>account_circle</mat-icon>
-          Profile
+          <span class="button-text">Profile</span>
         </a>
       </li>
       <li>
         <a href="#" class="nav-link text-white">
           <mat-icon>today</mat-icon>
-          Dairy
+          <span class="button-text">Diary</span>
         </a>
       </li>
       <li>
         <a href="#" class="nav-link text-white" (click)="logout()">
           <mat-icon>logout</mat-icon>
-          Log out
+          <span class="button-text">Log out</span>
         </a>
       </li>
     </ul>
+  </div>
