@@ -74,9 +74,6 @@ services:
       - network2
       
   be:
-    # build: 
-    #   context: ./BE
-    #   dockerfile: Dockerfile
     image: balanceapp-be
     ports:
       - "3000:3000"
@@ -86,9 +83,6 @@ services:
       - mongodb
       
   foodapp:
-    # build: 
-    #   context: ./FoodApp
-    #   dockerfile: Dockerfile
     image: balanceapp-foodapp
     ports:
       - "3001:3001"
