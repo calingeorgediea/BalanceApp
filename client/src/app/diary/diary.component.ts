@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { BackendApiService } from '../services/backend-api.service';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 @Component({
   selector: 'app-diary',
   templateUrl: './diary.component.html',
@@ -12,6 +12,7 @@ export class DiaryComponent implements OnInit {
   public token!: string | null;
   public infoAboutMe!: any | null;
   public loggedIn: boolean = false;
+  public goal!: string | null;
 
   constructor(public auth: BackendApiService) { }
 
@@ -31,9 +32,34 @@ export class DiaryComponent implements OnInit {
     this.auth.listInfoAboutMe(this.token).subscribe(res => {
       console.log(res); 
       this.infoAboutMe = res;
+      this.goal = this.infoAboutMe["kcalGoal"];
     },
       error => {console.log(error)
   });
+  }
+
+  addFoodToBreakfast(){
+    console.log('Adding food to breakfast');
+  }
+
+  addFoodToLunch(){
+    console.log('Adding food to lunch');
+  }
+
+  addFoodToDinner(){
+    console.log('Adding food to dinner');
+  }
+
+  addFoodToSnacks(){
+    console.log('Adding food to snacks');
+  }
+
+  addExercise(){
+    console.log('Adding exercise');
+  }
+
+  removeFood(){
+    console.log('Removing food entry')
   }
 
 }
