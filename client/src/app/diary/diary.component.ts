@@ -2,19 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { BackendApiService } from '../services/backend-api.service';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  selector: 'app-diary',
+  templateUrl: './diary.component.html',
+  styleUrls: ['./diary.component.css']
 })
-
-export class MainPageComponent implements OnInit {
+export class DiaryComponent implements OnInit {
   public currentUserName!: string | null;
   public currentUserId!: string | null;
   public token!: string | null;
   public infoAboutMe!: any | null;
   public loggedIn: boolean = false;
-  public hasGoalSet: boolean = false;
-  public goalPercentage: number = 25;
 
   constructor(public auth: BackendApiService) { }
 
@@ -34,13 +31,9 @@ export class MainPageComponent implements OnInit {
     this.auth.listInfoAboutMe(this.token).subscribe(res => {
       console.log(res); 
       this.infoAboutMe = res;
-      this.hasGoalSet = this.infoAboutMe["kcalGoal"] != 0 ? true : false;
     },
       error => {console.log(error)
   });
   }
-  
-  logout() {
-    this.auth.logout(this.token);
-  }
+
 }

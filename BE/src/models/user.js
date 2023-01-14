@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
         },
         kcalGoal: {
             type: Number,
-            default: 2500,
+            default: 0,
         },
         tokens: [{
             token: {

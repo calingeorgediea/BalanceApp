@@ -23,3 +23,26 @@
     padding-left: 5%;
     padding-right: 5%;
 }
+
+.has-goal-set-page {
+    padding: 0;
+    margin: 0;
+}
+
+.column-card {
+    margin-top: 5%;
+    height: 15vh;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.card-text {
+    display: grid;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-template-rows: 1fr 1fr;
+}
+
+.progress {
+    height: 15vh;
+}
