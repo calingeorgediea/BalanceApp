@@ -1,6 +1,9 @@
 import { OnInit, Component } from '@angular/core';
 import { BackendApiService } from '../services/backend-api.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { FoodListModalComponent } from '../food-list-modal/food-list-modal.component';
+
 @Component({
   selector: 'app-diary',
   templateUrl: './diary.component.html',
@@ -14,7 +17,10 @@ export class DiaryComponent implements OnInit {
   public loggedIn: boolean = false;
   public goal!: string | null;
 
-  constructor(public auth: BackendApiService) { }
+  constructor(
+    public auth: BackendApiService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem('user_token');
@@ -60,6 +66,20 @@ export class DiaryComponent implements OnInit {
 
   removeFood(){
     console.log('Removing food entry')
+  }
+
+  openFoodListDialog() {
+    const dialogRef = this.dialog.open(FoodListModalComponent, {
+      height: '600px',
+      width: '700px',
+      backdropClass: 'dialog-content'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+
+      }
+    });
   }
 
 }

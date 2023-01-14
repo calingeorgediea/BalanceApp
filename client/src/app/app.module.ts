@@ -18,6 +18,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { DiaryComponent } from './diary/diary.component';
+import { FoodListModalComponent } from './food-list-modal/food-list-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { DiaryComponent } from './diary/diary.component';
     MainPageComponent,
     SideMenuComponent,
     DiaryComponent,
+    FoodListModalComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import { DiaryComponent } from './diary/diary.component';
     MatDatepickerModule,
     NgbModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
