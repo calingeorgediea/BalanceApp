@@ -1,0 +1,9 @@
+.content ::ng-deep{
+    color: white !important;
+}
+
+.close-button {
+    float: right;
+    right:-24px;
+    top: -24px;
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendApiService } from '../services/backend-api.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { FoodListModalComponent } from '../food-list-modal/food-list-modal.component';
 
 @Component({
   selector: 'app-diary',
@@ -13,7 +15,10 @@ export class DiaryComponent implements OnInit {
   public infoAboutMe!: any | null;
   public loggedIn: boolean = false;
 
-  constructor(public auth: BackendApiService) { }
+  constructor(
+    public auth: BackendApiService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem('user_token');
@@ -34,6 +39,20 @@ export class DiaryComponent implements OnInit {
     },
       error => {console.log(error)
   });
+  }
+
+  openFoodListDialog() {
+    const dialogRef = this.dialog.open(FoodListModalComponent, {
+      height: '600px',
+      width: '700px',
+      backdropClass: 'dialog-content'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+
+      }
+    });
   }
 
 }
