@@ -7,6 +7,10 @@ const foodservice = require('../../utils/FoodService')
 const chalk = require('chalk')
 const log = console.log;
 const moment = require('moment')
+const dateformat = require('date-format')
+
+const now = new Date();
+console.log(dateformat('yyyy-MM-dd', new Date()))
 
 router.post('/food', auth, async(req,res) => {
     const food = new Food({
@@ -30,7 +34,7 @@ router.post('/me/food/:id', auth, async (req,res) => {
         var qty = 1;
     }
     try {
-        // Call foodservice - Send ID and associate food item
+        // Call foodservice - Send ID aFnd associate food item
         // to user. Service returns data needed to create a meal.
         // Each meal is associated to unique user.
         const food_id = req.params.id
@@ -46,6 +50,7 @@ router.post('/me/food/:id', auth, async (req,res) => {
                     name,
                     qty,
                     kcal,
+                    date: dateformat('yyyy-MM-dd', new Date()),
                     owner: req.user._id
                 })
                 await food.save()
@@ -65,11 +70,10 @@ router.get('/me/food', auth, async (req,res) => {
     const sort = {}
 
     if(req.query.dateA) {
-        if (!match.createdAt) {
-            match.createdAt = {}
+        if (!match.date) {
+            match.date = {}
         }
-        match.createdAt[/\[(.*?)\]/.exec(req.query.dateA)[1]] = /\((.*?)\)/.exec(req.query.dateA)[1]
-
+        match.date[/\[(.*?)\]/.exec(req.query.dateA)[1]] = /\((.*?)\)/.exec(req.query.dateA)[1]
     }
 
     if(req.query.limit){
@@ -83,7 +87,7 @@ router.get('/me/food', auth, async (req,res) => {
         if (!match.createdAt) {
             match.createdAt = {}
         }
-        match.createdAt[/\[(.*?)\]/.exec(req.query.dateB)[1]] = /\((.*?)\)/.exec(req.query.dateB)[1]
+        match.date[/\[(.*?)\]/.exec(req.query.dateB)[1]] = /\((.*?)\)/.exec(req.query.dateB)[1]
     }
 
     if (req.query.completed) {
@@ -108,6 +112,26 @@ router.get('/me/food', auth, async (req,res) => {
         res.send(req.user.food)
     } catch(e) {
         res.status(500).send()
+    }
+})
+
+router.patch('/me/food/:id', auth, async (req,res) => {
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['qty', 'description', 'name', 'kcal', 'date']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update) )
+    if ( !isValidOperation) {
+        return res.status(400).send({error: 'Invalid updates'})
+    }
+    try {
+        const food = await Food.findOne({_id: req.params.id})
+        if(!food) {
+            return res.status(404).send()
+        }
+        updates.forEach((update) => food[update] = req.body[update] )
+        await food.save()
+        res.send(food)
+    } catch(e) {
+        res.status(400).send(e)
     }
 })
 

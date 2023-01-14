@@ -1,3 +1,41 @@
-.dialog-content {
-    color: white !important;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.box {
+    margin-top: 10vh;
 }
+
+.foodBox{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 97%;
+}
+
+.right-align{
+    float: right;
+}
+
+.split {
+    width: 45%;
+    position: relative;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  /* Control the left side */
+  .left {
+    left: 0;
+  }
+  
+  /* Control the right side */
+  .right {
+    right: 0;
+    padding-left: 5%;
+  }
+
+    .dialog-content {
+        color: white !important;
+    }
+  

@@ -1,8 +1,259 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div *ngIf="loggedIn else elseBlock">
     <div class="container-fluid ps-md-0">
         <div class="row">
             <div class="d-none d-md-flex col-md-4 col-lg-2">
                 <app-side-menu></app-side-menu>
+            </div>
+            <div class="col-md-8 col-lg-10 content">
+                <!-- <div class="row box">
+                    <span class="fs-2" style="margin-top: 2%;  font-weight: bold;">Diary</span>
+                </div> -->
+                <div style="float: left; margin-top: 2%;" class="row box"> 
+                    <span class="fs-1" style="font-weight: bold;">Diary</span>
+                    
+                </div>
+                <!-- <div style="float: left; margin-top: 2%; margin-left: 5%;" class="row box"> 
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker">
+                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div> -->
+                <div class="row box">
+                    <hr>
+                    <div class="col">
+                        <div class="column-card" >
+                            <span class="fs-2">Select Date</span>
+                            <span style="margin-left: 10%;">Select date</span>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="column-card" style="margin-top: 3%;" >
+                            <span class="fs-2" >Calories Remaining</span>
+                        </div>
+                        <div class="column-card" style="margin-top: 2%;">
+                            <span class="fs-2" style="font-weight: bold;" >{{this.goal}}</span>
+                            <span class="fs-2" style="margin-left: 10%">-</span>
+                            <span class="fs-2" style="margin-left: 10%">1200</span>
+                            <span class="fs-2" style="margin-left: 10%">+</span>
+                            <span class="fs-2" style="margin-left: 10%">500</span>
+                            <span class="fs-2" style="margin-left: 10%">=</span>
+                            <span class="fs-2" style="margin-left: 10%">1800</span>
+                        </div>
+                        <div class="column-card" style="margin-top: 1%;">
+                            <span class="fs-2" style="font-weight: bold;">Goal</span>
+                            <span class="fs-2" style="margin-left: 21%">Food</span>
+                            <span class="fs-2" style="margin-left: 20%">Exercise</span>
+                            <span class="fs-2" style="margin-left: 17%">Remaining</span>
+                        </div>
+                    </div>
+                    <hr style="margin-top: 1%;">
+
+                    <div class="split left">
+                        <div class="row">
+                            <div class="column-card" style="margin-top: 2%;">
+                                <span class="fs-4" style="margin-left: 1%;">Breakfast</span>
+                                <span class="fs-4" style="float: right"> totalCaloriesBreakfast</span>
+                            </div>
+                            <hr style="margin-top: 1%; ">
+                            <div class="foodBox">
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food1</span>
+                                    <span class="fs-4" style="float: right"> 
+                                        111 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food2</span>
+                                    <span class="fs-4" style="float: right">
+                                        222 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food3</span>
+                                    <span class="fs-4" style="float: right">
+                                        333 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <hr>
+                                <button mat-raised-button color="primary" (click)="addFoodToBreakfast()">Add Food</button>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="column-card" style="margin-top: 3%;">
+                                <span class="fs-4" style="margin-left: 1%;">Lunch</span>
+                                <span class="fs-4" style="float: right"> totalCaloriesLunch</span>
+                            </div>
+                            <hr style="margin-top: 1%; ">
+                            <div class="foodBox">
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food1</span>
+                                    <span class="fs-4" style="float: right">
+                                        111 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food2</span>
+                                    <span class="fs-4" style="float: right">
+                                        222 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food3</span>
+                                    <span class="fs-4" style="float: right">
+                                        333 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <hr>
+                                <button mat-raised-button color="primary" (click)="addFoodToLunch()">Add Food</button>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="column-card" style="margin-top: 3%;">
+                                <span class="fs-4" style="margin-left: 1%;">Dinner</span>
+                                <span class="fs-4" style="float: right"> totalCaloriesDinner</span>
+                            </div>
+                            <hr style="margin-top: 1%; ">
+                            <div class="foodBox">
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food1</span>
+                                    <span class="fs-4" style="float: right"> 
+                                        111 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food2</span>
+                                    <span class="fs-4" style="float: right"> 
+                                        222 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Food3</span>
+                                    <span class="fs-4" style="float: right">
+                                        333 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <hr>
+                                <button mat-raised-button color="primary" (click)="addFoodToDinner()">Add Food</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="split right">
+                        <div class="row">
+                            <div class="column-card" style="margin-top: 2%;">
+                                <span class="fs-4" style="margin-left: 1%;">Snacks</span>
+                                <span class="fs-4" style="float: right"> totalCaloriesSnacks</span>
+                            </div>
+                            <hr style="margin-top: 1%; ">
+                            <div class="foodBox">
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Snack1</span>
+                                    <span class="fs-4" style="float: right"> 
+                                        111 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Snack2</span>
+                                    <span class="fs-4" style="float: right"> 
+                                        222 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Snack3</span>
+                                    <span class="fs-4" style="float: right"> 
+                                        333 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <hr>
+                                <button mat-raised-button color="primary" (click)="addFoodToSnacks()">Add Food</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column-card" style="margin-top: 10%;">
+                                <span class="fs-4" style="margin-left: 1%; font-weight: bold;">Exercises</span>
+                                <span class="fs-4" style="float: right">totalCaloriesExercises</span>
+                            </div>
+                            <hr style="margin-top: 1%; ">
+                            <div class="foodBox">
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Exercise1</span>
+                                    <span class="fs-4" style="float: right"> 
+                                        111 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Exercise2</span>
+                                    <span class="fs-4" style="float: right">
+                                        222 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="column-card" style="margin-bottom: 2%;">
+                                    <span class="fs-4" style="margin-left: 1%;">Exercise3</span>
+                                    <span class="fs-4" style="float: right">
+                                        333 calories
+                                        <span>
+                                            <i class="fa fa-trash" aria-hidden="true" (click)="removeFood()" style="float: right; padding-left: 20px;"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <hr>
+                                <button mat-raised-button color="primary" (click)="addExercise()">Add Food</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
             </div>
         </div>
     </div>

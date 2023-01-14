@@ -50,7 +50,7 @@ router.patch('/users/me', auth, async ( req,res ) => {
     // object to array of properties
     const updates = Object.keys(req.body)
     // what can be modified
-    const allowedUpdates = ['name', 'email', 'password', 'losingGoal']
+    const allowedUpdates = ['name', 'email', 'password', 'kcalGoal']
     // every tests if all elements in array pass a test implemented in the provided function, returns boolean
     // includes determines whether an array includes a certain value, returns true/false : if 9 true and 1 false, returns false.
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update) )
