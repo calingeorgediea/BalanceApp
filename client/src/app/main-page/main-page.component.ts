@@ -13,6 +13,8 @@ export class MainPageComponent implements OnInit {
   public token!: string | null;
   public infoAboutMe!: any | null;
   public loggedIn: boolean = false;
+  public hasGoalSet: boolean = false;
+  public goalPercentage: number = 25;
 
   constructor(public auth: BackendApiService) { }
 
@@ -25,10 +27,17 @@ export class MainPageComponent implements OnInit {
 
     this.currentUserName = localStorage.getItem('user_name');
     this.currentUserId = localStorage.getItem('user_id');
+    this.listInfoAboutMe();
   }
 
   listInfoAboutMe() {
-    this.auth.listInfoAboutMe(this.token).subscribe(res => {console.log(res); this.infoAboutMe = res;}, error => {console.log(error)});
+    this.auth.listInfoAboutMe(this.token).subscribe(res => {
+      console.log(res); 
+      this.infoAboutMe = res;
+      this.hasGoalSet = this.infoAboutMe["kcalGoal"] != 0 ? true : false;
+    },
+      error => {console.log(error)
+  });
   }
   
   logout() {

@@ -16,7 +16,7 @@
             <div class="d-none d-md-flex col-md-4 col-lg-2">
                 <app-side-menu></app-side-menu>
             </div>
-            <div class="col-md-8 col-lg-10 content">
+            <div *ngIf="!this.hasGoalSet else elseGoalSetBlock" class="col-md-8 col-lg-10 content">
                 <div class="row box">
                     <span class="title">Hello, {{this.currentUserName}}!</span>
                     <span class="fs-2" style="margin-top: 7%;">Please complete your details and your goals in order to use the application.</span>
@@ -51,9 +51,56 @@
                     </form>
                 </div>
             </div>
+            <ng-template #elseGoalSetBlock>
+                <div class="col-md-8 col-lg-10 content">
+                    <div class="row box">
+                        <span class="title">Welcome back, {{this.currentUserName}}!</span>
+                        <span class="fs-2" style="margin-top: 4%;">Here you can check your daily goal.</span>
+                    </div>
+                    <div class="row box">
+                        <div class="col-6">
+                            <div class="column-card">
+                                <img src="../../assets/calories.jpg" style="height: 15vh;">
+                                <span class="fs-2">Calories</span>
+                            </div>
+                            <div class="column-card">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" [style.width.%]="goalPercentage" role="progressbar">{{this.goalPercentage}}%</div>
+                                </div>
+                            </div>
+                            <div class="column-card card-text">
+                                <span class="fs-2">X consumed / Y</span>
+                                <span class="fs-2">Z remaining</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card column-card">
+                                <div class="card-body card-text">
+                                  <span class="fs-3">Goal for today: Y Calories</span>
+                                  <span class="fs-6">This is how many calories you should eat in one day</span>
+                                </div>
+                            </div>
+                            <div class="card column-card">
+                                <div class="card-body card-text">
+                                    <span class="fs-3">Food: A Calories</span>
+                                    <span class="fs-6">This is how many calories you gained today by eating food</span>
+                                </div>
+                            </div>
+                            <div class="card column-card">
+                                <div class="card-body card-text">
+                                    <span class="fs-3">Exercies: B calories</span>
+                                    <span class="fs-6">This is how many calories you lost by doing exercise</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>
+
+
 
 <ng-template #elseBlock>
     Not logged in go away
