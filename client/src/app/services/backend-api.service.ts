@@ -32,19 +32,35 @@ export class BackendApiService {
     this.router.navigateByUrl('login');
   }
 
-    // getLoggedInUser(auth_token): Observable<any> {
-  //   const headers = new Headers({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer ${auth_token}`
-  //   })
-  //   return this.http.get(apiUrl, { headers: headers })
-  // }
-
-  listInfoAboutMe(auth_token: string | null) {
+  getUserInfo(auth_token: string | null) {
     const headers = new HttpHeaders({
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${auth_token}`
         })
     return this.http.get<any>(backendPathUser + 'users/me', {headers: headers})
+  }
+
+  getKcalGoal(auth_token: string | null, age: string | null, weight: string | null, height: string | null, activity_level: string | null, gender: string | null, goal: string | null) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.post<any>(backendPathFood + 'doctor', { age: age, weight: weight, height: height, activity_level: activity_level, gender: gender, goal: goal}, {headers: headers})
+  }
+
+  updateUserInfo(auth_token: string | null, age: string | null, weight: string | null, height: string | null, activity_level: string | null, gender: string | null, goal: string | null, kcalGoal: string | null) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.patch<any>(backendPathUser + 'users/me', { age: age, weight: weight, height: height, activity_level: activity_level, gender: gender, goal: goal, kcalGoal: kcalGoal}, {headers: headers})
+  }
+
+  addWeightEntry(auth_token: string | null, weight: string | null, user_id: string | null) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.post<any>(backendPathUser + 'weights/' + user_id, { weight: weight}, {headers: headers})
   }
 }

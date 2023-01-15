@@ -67,7 +67,7 @@ export class DiaryComponent implements OnInit {
   }
 
   listInfoAboutMe() {
-    this.auth.listInfoAboutMe(this.token).subscribe(res => {
+    this.auth.getUserInfo(this.token).subscribe(res => {
       console.log(res); 
       this.infoAboutMe = res;
       this.goal = 0;
