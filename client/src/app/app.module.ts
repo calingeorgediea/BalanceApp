@@ -20,6 +20,7 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { DiaryComponent } from './diary/diary.component';
 import { FoodListModalComponent } from './food-list-modal/food-list-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     SideMenuComponent,
     DiaryComponent,
     FoodListModalComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
