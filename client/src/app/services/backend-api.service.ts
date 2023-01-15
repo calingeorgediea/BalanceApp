@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { backendPathUser, backendPathFood } from '../app.component';
 
@@ -71,4 +71,43 @@ export class BackendApiService {
     })
     return this.http.get<any>(backendPathUser + 'weights/' + user_id, {headers: headers})
   }
+
+  addFood(auth_token: string | null, name: string | null, description: string | null, kcal: string | null, category: string | null) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.post<any>(backendPathFood + 'food', {headers: headers})
+  }
+
+  getAllFoods(auth_token: string | null) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.get<any>(backendPathFood + 'food', {headers: headers})
+  }
+
+  addFoodInDiary(auth_token: string | null, when: string | null, qty: string | null, food_id: string | null,) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.post<any>(backendPathUser + 'me/food/' + food_id, {when: when, qty: qty}, {headers: headers})
+  }
+
+  getAllFoodsFromDiaryOneDay(auth_token: string | null, date: string | null) {
+
+    // let params = new HttpParams();
+    // const encodedDateA = encodeURIComponent(date!);
+
+    // params = params.append('dateA', encodedDateA);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+
+    return this.http.get<any>(backendPathUser + 'me/food??dateA=[$eq](' + date + ')', {headers: headers})
+  }
+  
 }

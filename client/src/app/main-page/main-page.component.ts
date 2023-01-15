@@ -21,6 +21,8 @@ export class MainPageComponent implements OnInit {
   public caloriesConsumed: number = 0;
   public goalPercentage: number = 0;
   public remainingCals: number = 0;
+  public exerciseCalories: number = 0;
+  public difference: number = 0;
 
   constructor(public auth: BackendApiService) { }
 
@@ -38,8 +40,23 @@ export class MainPageComponent implements OnInit {
       console.log(res);
       this.hasGoalSet = res.kcalGoal === 0 ? false : true;
       this.kcalGoal = res.kcalGoal;
-      this.goalPercentage = this.caloriesConsumed * 100 / parseInt(this.kcalGoal!);
-      this.remainingCals = parseInt(this.kcalGoal!) - this.caloriesConsumed
+
+      let todaysDate = new Date().toJSON().slice(0, 10);
+      console.log(new Date().toUTCString());
+      this.auth.getAllFoodsFromDiaryOneDay(this.token, todaysDate).subscribe(res => {
+        console.log(res);
+        for (let r of res) {
+          if (r.when != 'exercise') {
+            this.caloriesConsumed += r.kcal / 100 * r.qty;
+          } else {
+            this.exerciseCalories += r.kcal;
+          }
+        }
+        this.difference = this.caloriesConsumed - this.exerciseCalories;
+
+        this.goalPercentage = Math.ceil(this.difference * 100 / parseInt(this.kcalGoal!));
+        this.remainingCals = parseInt(this.kcalGoal!) - this.difference;
+      }, error => {console.log(error)});
     }, error => {console.log(error)});
   }
 
