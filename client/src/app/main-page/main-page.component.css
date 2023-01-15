@@ -46,3 +46,7 @@
 .progress {
     height: 15vh;
 }
+
+.m-top-small {
+    margin-top: 20px;
+}

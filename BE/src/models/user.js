@@ -36,6 +36,31 @@ const userSchema = new mongoose.Schema({
             type: Number,
             default: 0,
         },
+        weight: {
+            type: Number,
+            default: 0,
+        },
+        height: {
+            type: Number,
+            default: 0,
+        },
+        age: {
+            type: Number,
+            default: 0,
+        },
+        gender: {
+            type: Number,
+            default: 0,
+        },
+        goal: {
+            type: Number,
+            default: 0,
+        },
+        activity_level: {
+            type: Number,
+            default: 0,
+        },
+
         tokens: [{
             token: {
                 type: String,
