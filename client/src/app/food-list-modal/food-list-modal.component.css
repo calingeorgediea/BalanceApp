@@ -1,9 +1,26 @@
-.content ::ng-deep{
-    color: white !important;
-}
-
 .close-button {
     float: right;
     right:-24px;
     top: -24px;
+}
+
+.modal-header {
+    display: block !important;
+}
+
+.full-width-input{
+    width: 100%;
+}
+
+.padded-input{
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.appointment-button-div {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
 }

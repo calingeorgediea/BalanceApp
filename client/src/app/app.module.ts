@@ -20,6 +20,10 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { DiaryComponent } from './diary/diary.component';
 import { FoodListModalComponent } from './food-list-modal/food-list-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgbModule,
     MatDividerModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
