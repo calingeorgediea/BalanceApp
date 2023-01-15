@@ -1,0 +1,28 @@
+.close-button {
+    float: right;
+    right:-24px;
+    top: -24px;
+}
+
+.modal-header {
+    display: block !important;
+}
+
+.modal-body {
+    margin-top: 15%;
+}
+
+.add-button-div {
+    margin: 0;
+    margin-top: 2%;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.mat-white-button {
+    background-color: white;
+    color: black;
+    width: 5vw;
+}

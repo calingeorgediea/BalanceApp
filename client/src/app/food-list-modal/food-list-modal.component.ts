@@ -79,13 +79,6 @@ export class FoodListModalComponent implements OnInit {
         this.selectFoodDialogRef.close();
       }
     });
-  
-    // this.dialog.open(YourComponent, {
-    //   width: '250px',
-    //   data: {}
-    // }).afterclosed().pipe(
-    //   tap(() => this.activatedRow = null)
-    // );
   }
 
   onClick() {

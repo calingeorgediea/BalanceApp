@@ -1,0 +1,28 @@
+<button mat-icon-button class="close-button" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+</button> 
+
+<div class="modal-header header-footer"> 
+    <div class="modal-title text-white fs-2">
+        Add weight
+    </div>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="form-group">
+            <div class="row">
+                <mat-label>Weight (kg):</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="weight" required>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="add-button-div">
+    <button mat-button class="btn mat-white-button btn-block" (click)="onClick()">
+      Add
+    </button>
+</div>
