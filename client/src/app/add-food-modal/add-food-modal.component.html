@@ -7,3 +7,55 @@
         Add food
     </div>
 </div>
+
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="form-group">
+            <div class="row">
+                <mat-label>Name:</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="name" [readonly]="data ? true: false" required>
+                </mat-form-field>
+                <!-- <mat-error *ngIf="form.get('name')?.hasError('required')">
+                    This field is required
+                </mat-error> -->
+            </div>
+
+            <div class="row">
+                <mat-label>When:</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="when" [readonly]="data ? true: false" required>
+                </mat-form-field>
+                <!-- <mat-error *ngIf="form.get('when')?.hasError('required')">
+                    This field is required
+                </mat-error> -->
+            </div>
+
+            <div class="row">
+                <mat-label>Calories:</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="calories" [readonly]="data ? true: false" required>
+                </mat-form-field>
+                <!-- <mat-error *ngIf="form.get('calories')?.hasError('required')">
+                    This field is required
+                </mat-error> -->
+            </div>
+
+            <div class="row">
+                <mat-label>Serving size (g):</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="quantity" required>
+                </mat-form-field>
+                <!-- <mat-error *ngIf="form.get('quantity')?.hasError('required')">
+                    This field is required
+                </mat-error> -->
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="add-button-div">
+    <button mat-button class="btn mat-white-button btn-block" (click)="onClick()">
+      Add
+    </button>
+</div>

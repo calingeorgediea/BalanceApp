@@ -27,6 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { AddFoodModalComponent } from './add-food-modal/add-food-modal.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
@@ -66,6 +67,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     MatPaginatorModule,
     MatInputModule,
     MatSortModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

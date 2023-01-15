@@ -157,11 +157,13 @@ export class DiaryComponent implements OnInit {
     }
   }
 
-  openFoodListDialog() {
+  openFoodListDialog(when: string) {
     const dialogRef = this.dialog.open(FoodListModalComponent, {
       height: '550px',
       width: '700px',
-      backdropClass: 'dialog-content'
+      data: {
+        when: when ? when : null
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
