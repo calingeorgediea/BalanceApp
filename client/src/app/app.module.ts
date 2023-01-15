@@ -31,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 import { AddWeightModalComponent } from './add-weight-modal/add-weight-modal.component';
+import { ChangeGoalModalComponent } from './change-goal-modal/change-goal-modal.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
@@ -45,6 +46,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     CanvasJSChart,
     AddFoodModalComponent,
     AddWeightModalComponent,
+    ChangeGoalModalComponent,
   ],
   imports: [
     CommonModule,

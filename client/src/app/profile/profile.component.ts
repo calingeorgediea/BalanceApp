@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendApiService } from '../services/backend-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddWeightModalComponent } from '../add-weight-modal/add-weight-modal.component';
+import { ChangeGoalModalComponent } from '../change-goal-modal/change-goal-modal.component';
 
 @Component({
   selector: 'app-profile',
@@ -140,6 +141,16 @@ export class ProfileComponent implements OnInit {
 
   changeGoal(){
     console.log('changing goal');
+    const dialogRef = this.dialog.open(ChangeGoalModalComponent, {
+      height: '300px',
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+
+      }
+    });
   }
 
   padTo2Digits(num: any) {
