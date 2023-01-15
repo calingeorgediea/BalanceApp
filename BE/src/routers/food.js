@@ -33,7 +33,7 @@ router.post('/me/food/:id', auth, async (req,res) => {
     } else {
         var qty = 1;
     }
-    let moment_of_day = req.body.when;
+    let when = req.body.when;
 
     try {
         // Call foodservice - Send ID aFnd associate food item
@@ -54,7 +54,7 @@ router.post('/me/food/:id', auth, async (req,res) => {
                     qty,
                     kcal,
                     date: dateformat('yyyy-MM-dd', new Date()),
-                    when: moment_of_day,
+                    when: when,
                     owner: req.user._id
                 })
                 await food.save()
@@ -103,7 +103,7 @@ router.get('/me/food', auth, async (req,res) => {
         sort[parts[0]] = parts[1] === 'desc' ? -1: 1
     }
     req.query.completed
-    console.log(match)
+    console.log('match:::', match)
     try {
         await req.user.populate({
             path: 'food',
