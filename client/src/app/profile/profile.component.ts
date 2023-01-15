@@ -20,73 +20,12 @@ export class ProfileComponent implements OnInit {
   public age!: any | null;
   public height!: any | null;
   public kcal!: any | null;
-  public weightEntries: Array<any> = [
-    {date: new Date(2023, 0, 1), weight: 90.0},
-    {date: new Date(2023, 0, 5), weight: 90.4},
-    {date: new Date(2023, 1, 9), weight: 90.8},
-    {date: new Date(2023, 1, 11), weight: 91.1},
-    {date: new Date(2023, 2, 13), weight: 90.7},
-    {date: new Date(2023, 3, 15), weight: 90.8},
-    {date: new Date(2023, 4, 16), weight: 91.0},
-    {date: new Date(2023, 5, 8), weight: 92.0},
-  ];
+  public weightEntries: Array<any> = [];
 
-  public weightEntriesX: Array<any> = [
-    {date: this.formatDate(this.weightEntries[0].date), weight: 90.0},
-    {date: this.formatDate(this.weightEntries[1].date), weight: 90.4},
-    {date: this.formatDate(this.weightEntries[2].date), weight: 90.8},
-    {date: this.formatDate(this.weightEntries[3].date), weight: 91.1},
-    {date: this.formatDate(this.weightEntries[4].date), weight: 90.7},
-    {date: this.formatDate(this.weightEntries[5].date), weight: 90.8},
-    {date: this.formatDate(this.weightEntries[6].date), weight: 91.0},
-    {date: this.formatDate(this.weightEntries[7].date), weight: 92.0},
-  ];
+  public weightEntriesX: Array<any> = [];	
 
-
-  chartOptions = {
-		animationEnabled: true,
-		theme: "light2",
-		title: {
-			text: "Weight Progress - 2023"
-		},
-		axisX: {
-			interval: 1
-		},
-		axisY: {
-			title: "Kilograms",
-		  suffix: " kg"
-		},
-		toolTip: {
-			shared: true
-		},
-		legend: {
-			cursor: "pointer",
-			itemclick: function(e: any){
-				if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-					e.dataSeries.visible = false;
-				} else{
-					e.dataSeries.visible = true;
-				}
-				e.chart.render();
-			}
-		},
-		data: [{
-			type:"line",
-			name: "Progress",
-			showInLegend: true,
-			yValueFormatString: "##.# kg",
-			dataPoints: [		
-				{ x: this.weightEntries[0].date, y: this.weightEntries[0].weight },
-				{ x: this.weightEntries[1].date, y: this.weightEntries[1].weight },
-				{ x: this.weightEntries[2].date, y: this.weightEntries[2].weight },
-				{ x: this.weightEntries[3].date, y: this.weightEntries[3].weight },
-				{ x: this.weightEntries[4].date, y: this.weightEntries[4].weight },
-				{ x: this.weightEntries[5].date, y: this.weightEntries[5].weight },
-				{ x: this.weightEntries[6].date, y: this.weightEntries[6].weight },
-        { x: this.weightEntries[7].date, y: this.weightEntries[7].weight },
-			]
-		}]
-	}	
+  public chartOptions: any = {};
+  public datapoints: any = [];
 
   constructor(public auth: BackendApiService) { }
 
@@ -101,14 +40,76 @@ export class ProfileComponent implements OnInit {
     this.currentUserId = localStorage.getItem('user_id');
     this.listInfoAboutMe();
 
-    this.currentWeight = this.weightEntries[this.weightEntries.length-1].weight;
+    this.auth.getWeightsForUser(this.token, this.currentUserId).subscribe(res => {
+      console.log(res);
+      for (let r of res) {
+        this.weightEntries.push({date: new Date(r.createdAt), weight: parseInt(r.weight)});
+        this.weightEntriesX.push({date: this.formatDate(new Date(r.createdAt)), weight: r.weight});
+      }
+
+      this.weightEntries = this.weightEntries.reverse();
+      this.weightEntriesX = this.weightEntriesX.reverse();
+
+      for (const weight of this.weightEntries) {
+        this.datapoints.push({ x: weight.date, y: weight.weight })
+      }
+
+      this.chartOptions = {
+        animationEnabled: true,
+        theme: "light2",
+        title: {
+          text: "Weight Progress - 2023"
+        },
+        axisX: {
+          interval: 1
+        },
+        axisY: {
+          title: "Kilograms",
+          suffix: " kg"
+        },
+        toolTip: {
+          shared: true
+        },
+        legend: {
+          cursor: "pointer",
+          itemclick: function(e: any){
+            if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+              e.dataSeries.visible = false;
+            } else{
+              e.dataSeries.visible = true;
+            }
+            e.chart.render();
+          }
+        },
+        data: [{
+          type:"line",
+          name: "Progress",
+          showInLegend: true,
+          yValueFormatString: "##.# kg",
+          
+          dataPoints: this.datapoints
+        }]
+      }
+      this.currentWeight = this.weightEntries[this.weightEntries.length-1].weight;
+    },
+      error => {console.log(error)
+    });
+
   }
 
   listInfoAboutMe() {
     this.auth.getUserInfo(this.token).subscribe(res => {
       console.log(res); 
       this.infoAboutMe = res;
-      this.goal = 'Gain Weight';
+
+      if (res.goal === 0) {
+        this.goal = 'Lose Weight';
+      } else if (res.goal === 1) {
+        this.goal = 'Maintain';
+      } else {
+        this.goal = 'Gain Weight';
+      }
+      
       this.name = this.infoAboutMe["name"];
       this.age = this.infoAboutMe["age"];
       this.height = this.infoAboutMe["height"];

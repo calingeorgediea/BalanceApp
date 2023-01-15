@@ -33,6 +33,8 @@ router.post('/me/food/:id', auth, async (req,res) => {
     } else {
         var qty = 1;
     }
+    let moment_of_day = req.body.when;
+
     try {
         // Call foodservice - Send ID aFnd associate food item
         // to user. Service returns data needed to create a meal.
@@ -44,13 +46,15 @@ router.post('/me/food/:id', auth, async (req,res) => {
                 console.log(error)
                 log(chalk.purple.inverse(error));
             }
-                try {
+
+            try {
                 const food = new Food({
                     id,
                     name,
                     qty,
                     kcal,
                     date: dateformat('yyyy-MM-dd', new Date()),
+                    when: moment_of_day,
                     owner: req.user._id
                 })
                 await food.save()
