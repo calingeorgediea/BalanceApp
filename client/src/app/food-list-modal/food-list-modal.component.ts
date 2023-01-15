@@ -55,16 +55,24 @@ export class FoodListModalComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openDialog(row: any) {
+  clickRow(row: any) {
     this.activatedRow = row;
+    this.openDialog(row);
+  }
 
+  openDialog(data: any) {
     const dialogRef = this.addFoodDialog.open(AddFoodModalComponent, {
       height: '550px',
       width: '700px',
+      data: data ? {
+        name: data.name,
+        calories: data.calories
+      } : null
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result.data.when);
         this.selectFoodDialogRef.close();
       }
     });
