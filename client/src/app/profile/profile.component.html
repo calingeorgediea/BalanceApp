@@ -1,0 +1,103 @@
+<div *ngIf="loggedIn else elseBlock">
+    <div class="container-fluid ps-md-0">
+        <div class="row">
+            <div class="d-none d-md-flex col-md-4 col-lg-2">
+                <app-side-menu></app-side-menu>
+            </div>
+            <div class="col-md-8 col-lg-10 content">
+                <div style="margin-top: 5%;" class="row"> 
+                    <span class="fs-1" style="text-align: center;">Here you can track your weight progress and change your goal</span>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="column-card" style="margin-top: 4%; margin-left: 3%;">
+                            <span class="fs-2" style="font-weight: bold;">Progress</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column-card" style="margin-top: 2%;">
+                            <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
+                        </div>  
+                        <hr style="margin-top: 420px;">
+                        <div class="row" >
+                            <div class="split left">
+                                <span class="fs-4" style="margin-left: 3%">
+                                    Weight Entries    
+                                    <button style="margin-left: 2%" mat-raised-button color="primary" (click)="addWeight()">Add Weight</button>
+                                </span>
+                                <div style="overflow-y: scroll; height: 215px; width: 80%;">
+                                    <div *ngFor="let w of weightEntriesX;">
+                                        <div class="foodBox">
+                                            <span class="fs-4" style="margin-left: 1%;">{{w.date}}</span>
+                                            <span class="fs-4" style="float: right"> 
+                                                {{w.weight}} kg
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="split">
+                                <span class="fs-4" style="margin-left: 3%">
+                                    Goals   
+                                    <button style="margin-left: 2%" mat-raised-button color="primary" (click)="changeGoal()">Change Goal</button>
+                                </span>
+                                <div>
+                                    <div class="foodBox">
+                                        <span class="fs-4" style="margin-left: 1%;">Current Weight: </span>
+                                        <span class="fs-4" style="float: right"> 
+                                            {{this.currentWeight}} kg
+                                        </span>
+                                    </div>
+                                    <div class="foodBox">
+                                        <span class="fs-4" style="margin-left: 1%;">Goal: </span>
+                                        <span class="fs-4" style="float: right"> 
+                                            {{this.goal}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="split right">
+                                <span class="fs-4" style="margin-left: 3%">
+                                    Profile Information  
+                                </span>
+                                <div class="foodBox" style="height: 215px;">
+                                    <div class="column-card" style="margin-bottom: 5%;">
+                                        <span class="fs-4" style="margin-left: 1%;">Name: </span>
+                                        <span class="fs-4" style="float: right">
+                                            {{this.name}}
+                                        </span>
+                                    </div>
+                                    <div class="column-card" style="margin-bottom: 5%;">
+                                        <span class="fs-4" style="margin-left: 1%;">Age: </span>
+                                        <span class="fs-4" style="float: right">
+                                            {{this.age}}
+                                        </span>
+                                    </div>
+                                    <div class="column-card" style="margin-bottom: 5%;">
+                                        <span class="fs-4" style="margin-left: 1%;">Height: </span>
+                                        <span class="fs-4" style="float: right">
+                                            {{this.height}}
+                                        </span>
+                                    </div>
+                                    <div class="column-card" style="margin-bottom: 5%;">
+                                        <span class="fs-4" style="margin-left: 1%;">Kcal: </span>
+                                        <span class="fs-4" style="float: right">
+                                            {{this.kcal}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #elseBlock>
+    Not logged in go away
+</ng-template>
+
+
+

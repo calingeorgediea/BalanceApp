@@ -31,6 +31,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "jest": "^29.3.1",
+    "request": "^2.88.2",
     "sharp": "^0.31.3",
     "supertest": "^6.3.3"
   }

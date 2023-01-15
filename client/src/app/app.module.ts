@@ -26,6 +26,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { AddFoodModalComponent } from './add-food-modal/add-food-modal.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { AddFoodModalComponent } from './add-food-modal/add-food-modal.component
     SideMenuComponent,
     DiaryComponent,
     FoodListModalComponent,
+    ProfileComponent,
+    CanvasJSChart,
     AddFoodModalComponent,
   ],
   imports: [

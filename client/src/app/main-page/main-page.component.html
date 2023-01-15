@@ -1,16 +1,4 @@
 <div *ngIf="loggedIn else elseBlock">
-    <!-- <div>
-        Main Page
-        <button mat-raised-button class="btn btn-lg btn-login btn-info text-uppercase fw-bold mb-2" type="submit"
-        (click)="this.listInfoAboutMe()">List Info About Me!</button>
-    </div>
-    <div *ngIf="infoAboutMe">
-        {{infoAboutMe.mail}} {{infoAboutMe._id}} 
-    </div>
-    <div>
-        <button mat-raised-button class="btn btn-lg btn-login btn-info text-uppercase fw-bold mb-2" type="submit"
-        (click)="this.logout()">Log out</button>
-    </div> -->
     <div class="container-fluid ps-md-0">
         <div class="row">
             <div class="d-none d-md-flex col-md-4 col-lg-2">
@@ -28,25 +16,35 @@
                                 <div class="col-6 form-column">
                                     <span class="fs-2">Goals</span>
                                     <input type="text" class="form-control form-control-lg input-box" id="weight" placeholder="Weight (kg)">
-                                    <select class="form-select form-select-lg input-box">
-                                        <option>Choose your goal</option>
-                                        <option>Lose weight</option>
-                                        <option>Maintain</option>
-                                        <option>Gain weight</option>
+                                    <select class="form-select form-select-lg input-box" id="goal">
+                                        <option value="-1">Choose your goal</option>
+                                        <option value="0">Lose weight</option>
+                                        <option value="1">Maintain</option>
+                                        <option value="2">Gain weight</option>
+                                    </select>
+                                    <select class="form-select form-select-lg input-box" id="activity">
+                                        <option value="-1">Choose your activity level</option>
+                                        <option value="0" >Sedentary</option>
+                                        <option value="1">Light activity</option>
+                                        <option value="2">Active</option>
+                                        <option value="3">Vigorous activity</option>
                                     </select>
                                 </div>
                                 <div class="col-6 form-column">
                                     <span class="fs-2">Information</span>
                                     <input type="text" class="form-control form-control-lg input-box" id="age" placeholder="Age">
                                     <input type="text" class="form-control form-control-lg input-box" id="height" placeholder="Height (cm)">
-                                    <select class="form-select form-select-lg input-box">
-                                        <option>Choose gender</option>
-                                        <option>Male</option>
-                                        <option>Female</option>
+                                    <select class="form-select form-select-lg input-box" id ="gender">
+                                        <option value="-1">Choose gender</option>
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
                                     </select>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary btn-lg box" style="width: 20vh;">Set</button>
+                            <div *ngIf="this.formError" class="alert alert-danger m-top-small" role="alert">
+                                Please complete all the inputs. Put numbers where needed.
+                            </div>
+                            <button type="button" type="submit" class="btn btn-primary btn-lg box" style="width: 20vh;" (click)="this.handleClickSet()">Set</button>
                         </div>
                     </form>
                 </div>
@@ -69,14 +67,14 @@
                                 </div>
                             </div>
                             <div class="column-card card-text">
-                                <span class="fs-2">X consumed / Y</span>
-                                <span class="fs-2">Z remaining</span>
+                                <span class="fs-2">{{this.caloriesConsumed}} consumed / {{this.kcalGoal}} calories</span>
+                                <span class="fs-2">{{this.remainingCals}} remaining</span>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="card column-card">
                                 <div class="card-body card-text">
-                                  <span class="fs-3">Goal for today: Y Calories</span>
+                                  <span class="fs-3">Goal for today: {{this.kcalGoal}} Calories</span>
                                   <span class="fs-6">This is how many calories you should eat in one day</span>
                                 </div>
                             </div>
