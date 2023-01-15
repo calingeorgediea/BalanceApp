@@ -1,0 +1,32 @@
+<button mat-icon-button class="close-button" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+</button> 
+
+<div class="modal-header header-footer"> 
+    <div class="modal-title text-white fs-2">
+        Change goal
+    </div>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="form-group">
+            <div class="row">
+                <mat-form-field>
+                    <mat-label>Choose your goal</mat-label>
+                    <mat-select formControlName="goal" required>
+                        <mat-option value="0">Lose weight</mat-option>
+                        <mat-option value="1">Maintain</mat-option>
+                        <mat-option value="2">Gain weight</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="change-button-div">
+    <button mat-button class="btn mat-white-button btn-block" (click)="onClick()">
+      Change
+    </button>
+</div>

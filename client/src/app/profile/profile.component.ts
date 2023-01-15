@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendApiService } from '../services/backend-api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddWeightModalComponent } from '../add-weight-modal/add-weight-modal.component';
+import { ChangeGoalModalComponent } from '../change-goal-modal/change-goal-modal.component';
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +30,10 @@ export class ProfileComponent implements OnInit {
   public chartOptions: any = {};
   public datapoints: any = [];
 
-  constructor(public auth: BackendApiService) { }
+  constructor(
+    public auth: BackendApiService,
+    public dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem('user_token');
@@ -121,10 +127,30 @@ export class ProfileComponent implements OnInit {
 
   addWeight(){
     console.log('adding weight');
+    const dialogRef = this.dialog.open(AddWeightModalComponent, {
+      height: '300px',
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+
+      }
+    });
   }
 
   changeGoal(){
     console.log('changing goal');
+    const dialogRef = this.dialog.open(ChangeGoalModalComponent, {
+      height: '300px',
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+
+      }
+    });
   }
 
   editInformation(){
