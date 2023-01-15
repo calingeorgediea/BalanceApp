@@ -22,6 +22,9 @@ import { FoodListModalComponent } from './food-list-modal/food-list-modal.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileComponent } from './profile/profile.component';
 
+import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
     DiaryComponent,
     FoodListModalComponent,
     ProfileComponent,
+    CanvasJSChart
   ],
   imports: [
     CommonModule,
