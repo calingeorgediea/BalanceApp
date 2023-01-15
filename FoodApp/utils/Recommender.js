@@ -33,10 +33,10 @@ const recommender = ({age, weight, height, activity_level, gender, goal}) => {
     // known-constants from nutrition websites
     console.log(age)
     activity_constant = {
-        "1" : 1.2,
-        "2" : 1.375,
-        "3" : 1.55,
-        "4" : 1.725
+        "0" : 1.2,
+        "1" : 1.375,
+        "2" : 1.55,
+        "3" : 1.725
     }
     const physical_activity_ratio = activity_constant[activity_level]
     let maintenance_calories
