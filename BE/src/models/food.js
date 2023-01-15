@@ -30,6 +30,10 @@ const foodSchema = new mongoose.Schema({
     },
     date : {
         type: Date
+    },
+    when: {
+        type: String,
+        default: false
     }
 },{
     timestamps: true

@@ -63,4 +63,12 @@ export class BackendApiService {
     })
     return this.http.post<any>(backendPathUser + 'weights/' + user_id, { weight: weight}, {headers: headers})
   }
+
+  getWeightsForUser(auth_token: string | null, user_id: string | null) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.get<any>(backendPathUser + 'weights/' + user_id, {headers: headers})
+  }
 }

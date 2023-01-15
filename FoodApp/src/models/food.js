@@ -19,21 +19,6 @@ const foodSchema = new mongoose.Schema({
             trim: true,
             required: true,
         },
-        protein: {
-            type: Number,
-            trim: true,
-            required: true,
-        },
-        carbs: {
-            type: Number,
-            trim: true,
-            required: true,
-        },
-        fat: {
-            type: Number,
-            trim: true,
-            required: true,
-        },
         category: {
             type: String,
             trim: true,
