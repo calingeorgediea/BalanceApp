@@ -16,7 +16,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 import { DiaryComponent } from './diary/diary.component';
 import { FoodListModalComponent } from './food-list-modal/food-list-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -25,6 +25,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
+import { AddFoodModalComponent } from './add-food-modal/add-food-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatSortModule } from '@angular/material/sort';
     SideMenuComponent,
     DiaryComponent,
     FoodListModalComponent,
+    AddFoodModalComponent,
   ],
   imports: [
     CommonModule,

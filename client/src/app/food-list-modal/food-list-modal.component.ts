@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { AddFoodModalComponent } from '../add-food-modal/add-food-modal.component';
 
 export interface Food {
   name: string,
@@ -33,11 +34,15 @@ const food_example: Food[] = [
 export class FoodListModalComponent implements OnInit {
   displayedColumns: string[] = ['name', 'calories'];
   dataSource: any;
+  activatedRow = null;
 
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dialogRef: MatDialogRef<FoodListModalComponent>) { }
+  constructor(
+    private selectFoodDialogRef: MatDialogRef<FoodListModalComponent>,
+    private addFoodDialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(food_example.sort((a, b) => a.name.localeCompare(b.name)));
@@ -50,11 +55,33 @@ export class FoodListModalComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  openDialog(row: any) {
+    this.activatedRow = row;
+
+    const dialogRef = this.addFoodDialog.open(AddFoodModalComponent, {
+      height: '550px',
+      width: '700px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.selectFoodDialogRef.close();
+      }
+    });
+  
+    // this.dialog.open(YourComponent, {
+    //   width: '250px',
+    //   data: {}
+    // }).afterclosed().pipe(
+    //   tap(() => this.activatedRow = null)
+    // );
+  }
+
   onClick() {
     
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.selectFoodDialogRef.close();
   }
 }
