@@ -127,6 +127,10 @@ export class ProfileComponent implements OnInit {
     console.log('changing goal');
   }
 
+  editInformation(){
+    console.log('edit info');
+  }
+
   padTo2Digits(num: any) {
     return num.toString().padStart(2, '0');
   }
