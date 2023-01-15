@@ -16,10 +16,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 import { DiaryComponent } from './diary/diary.component';
 import { FoodListModalComponent } from './food-list-modal/food-list-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { AddFoodModalComponent } from './add-food-modal/add-food-modal.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
@@ -34,7 +40,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     DiaryComponent,
     FoodListModalComponent,
     ProfileComponent,
-    CanvasJSChart
+    CanvasJSChart,
+    AddFoodModalComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +60,12 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     NgbModule,
     MatDividerModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

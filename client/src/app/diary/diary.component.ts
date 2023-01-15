@@ -159,7 +159,7 @@ export class DiaryComponent implements OnInit {
 
   openFoodListDialog() {
     const dialogRef = this.dialog.open(FoodListModalComponent, {
-      height: '600px',
+      height: '550px',
       width: '700px',
       backdropClass: 'dialog-content'
     });

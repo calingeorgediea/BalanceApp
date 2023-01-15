@@ -1,0 +1,13 @@
+.close-button {
+    float: right;
+    right:-24px;
+    top: -24px;
+}
+
+.modal-header {
+    display: block !important;
+}
+
+.modal-body {
+    margin-top: 5%;
+}
