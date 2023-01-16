@@ -24,31 +24,12 @@ export class DiaryComponent implements OnInit {
   public totalCaloriesExercises = 0;
   public totalCalories = 0;
   public remainingCalories = 0;
-  public foodBreakfast: Array<any> = [
-    {name: 'food1 breakfast', quantity: 1, calories: 100},
-    {name: 'food2 breakfast', quantity: 3, calories: 300},
-    {name: 'food3 breakfast', quantity: 0.5, calories: 250},
-  ];
-  public foodLunch: Array<any> = [
-    {name: 'food1 lunch', quantity: 2, calories: 123},
-    {name: 'food2 lunch', quantity: 2.1, calories: 153},
-    {name: 'food3 lunch', quantity: 1.5, calories: 612},
-  ];
-  public foodDinner: Array<any> = [
-    {name: 'food1 dinner', quantity: 1.4, calories: 313},
-    {name: 'food2 dinner', quantity: 2.3, calories: 222},
-    {name: 'food3 dinner', quantity: 1.5, calories: 131},
-  ];
-  public foodSnacks: Array<any> = [
-    {name: 'food1 snack', quantity: 3, calories: 442},
-    {name: 'food2 snack', quantity: 1, calories: 93},
-    {name: 'food3 snack', quantity: 1.5, calories: 20},
-  ];
-  public exercises: Array<any> = [
-    {name: 'push-up', quantity: 100, calories: 60},
-    {name: 'squat', quantity: 50, calories: 100},
-    {name: 'deadlift', quantity: 30, calories: 150},
-  ];
+
+  public foodBreakfast: Array<any> = []  ;
+  public foodLunch: Array<any> = [];
+  public foodDinner: Array<any> = [];
+  public foodSnacks: Array<any> = [];
+  public exercises: Array<any> = [];
 
   constructor(
     public auth: BackendApiService,
@@ -64,7 +45,36 @@ export class DiaryComponent implements OnInit {
 
     this.currentUserName = localStorage.getItem('user_name');
     this.currentUserId = localStorage.getItem('user_id');
-    this.listInfoAboutMe();
+
+    let todaysDate = this.date.toJSON().slice(0, 10);
+    this.initData(todaysDate);
+  }
+
+  initData(todaysDate: any) {
+    this.foodBreakfast = [];
+    this.foodLunch = [];
+    this.foodDinner = [];
+    this.foodSnacks = [];
+    this.exercises = [];
+
+    this.auth.getAllFoodsFromDiaryOneDay(this.token, todaysDate).subscribe(res => {
+      console.log(res);
+
+      for (let r of res) {
+        if (r.when === 'breakfast') {
+          this.foodBreakfast.push({name: r.name, calories: r.kcal / 100 * r.qty});
+        } else if (r.when === 'lunch') {
+          this.foodLunch.push({name: r.name, calories: r.kcal / 100 * r.qty});
+        } else if (r.when === 'dinner') {
+          this.foodDinner.push({name: r.name, calories: r.kcal / 100 * r.qty});
+        } else if (r.when === 'snacks') {
+          this.foodSnacks.push({name: r.name, calories: r.kcal / 100 * r.qty});
+        } else if (r.when === 'exercise') {
+          this.exercises.push({name: r.name, calories: r.kcal});
+        }
+      }
+      this.listInfoAboutMe();
+    }, error => {console.log(error)});
   }
 
   listInfoAboutMe() {
@@ -95,7 +105,7 @@ export class DiaryComponent implements OnInit {
       for(let i = 0; i < this.exercises.length; i++){
         this.totalCaloriesExercises += this.exercises[i].calories;
       }
-      this.totalCalories = this.totalCaloriesBreakfast + this.totalCaloriesLunch + this.totalCaloriesDinner + this.totalCaloriesSnacks + this.totalCaloriesExercises;
+      this.totalCalories = this.totalCaloriesBreakfast + this.totalCaloriesLunch + this.totalCaloriesDinner + this.totalCaloriesSnacks;
       this.remainingCalories = this.goal - this.totalCalories + this.totalCaloriesExercises;
     },
       error => {console.log(error)
@@ -168,10 +178,15 @@ export class DiaryComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log('intra')
       if (result) {
 
       }
     });
+  }
+
+  handleDateChange(e: any) {
+    this.initData(e.value);
   }
 
 }
