@@ -107,7 +107,7 @@ export class BackendApiService {
       'Authorization': `Bearer ${auth_token}`
     })
 
-    return this.http.get<any>(backendPathUser + 'me/food??dateA=[$eq](' + date + ')', {headers: headers})
+    return this.http.get<any>(backendPathUser + 'me/food?dateA=[$eq](' + date + ')', {headers: headers})
   }
   
 }
