@@ -137,7 +137,8 @@ export class ProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
+        console.log(result.data.weight);
+        // Call API
       }
     });
   }
@@ -151,7 +152,8 @@ export class ProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
+        console.log(result.data.goal);
+        // Call API
       }
     });
   }
@@ -170,7 +172,8 @@ export class ProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
+        console.log(result.data.age);
+        // Call API
       }
     });
   }

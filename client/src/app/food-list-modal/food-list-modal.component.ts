@@ -76,6 +76,8 @@ export class FoodListModalComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        console.log(result.data.quantity);
+        // Call API
         this.selectFoodDialogRef.close();
       }
     });

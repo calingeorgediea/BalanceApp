@@ -3,6 +3,7 @@ import { BackendApiService } from '../services/backend-api.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FoodListModalComponent } from '../food-list-modal/food-list-modal.component';
+import { AddExerciseComponent } from '../add-exercise/add-exercise.component';
 
 @Component({
   selector: 'app-diary',
@@ -131,6 +132,17 @@ export class DiaryComponent implements OnInit {
 
   addExercise(){
     console.log('Adding exercise');
+    const dialogRef = this.dialog.open(AddExerciseComponent, {
+      height: '400px',
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result.data.name);
+        // Call API
+      }
+    });
   }
 
   removeFoodBreakfast(i: any){
@@ -178,7 +190,7 @@ export class DiaryComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('intra')
+      console.log('intra');
       if (result) {
 
       }
