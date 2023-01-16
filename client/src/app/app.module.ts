@@ -34,6 +34,7 @@ import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 import { AddWeightModalComponent } from './add-weight-modal/add-weight-modal.component';
 import { ChangeGoalModalComponent } from './change-goal-modal/change-goal-modal.component';
 import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
+import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
@@ -50,6 +51,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     AddWeightModalComponent,
     ChangeGoalModalComponent,
     EditUserModalComponent,
+    AddExerciseComponent,
   ],
   imports: [
     CommonModule,

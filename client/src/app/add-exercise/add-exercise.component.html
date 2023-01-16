@@ -1,0 +1,35 @@
+<button mat-icon-button class="close-button" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+</button> 
+
+<div class="modal-header header-footer"> 
+    <div class="modal-title text-white fs-2">
+        Add exercise
+    </div>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="form-group">
+            <div class="row">
+                <mat-label>Name:</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="name" required>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-label>Calories burned:</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="calories" required>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="add-button-div">
+    <button mat-button class="btn mat-white-button btn-block" (click)="onClick()">
+      Add
+    </button>
+</div>
