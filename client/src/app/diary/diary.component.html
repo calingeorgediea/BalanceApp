@@ -27,26 +27,29 @@
                           </mat-form-field>
                     </div>
                 
-                    <div class="row">
+                    <!-- <div class="row"> -->
                         <div class="column-card" style="margin-top: 3%;" >
                             <span class="fs-2" >Calories Remaining</span>
                         </div>
-                        <div class="column-card" style="margin-top: 2%;">
-                            <span class="fs-2" style="font-weight: bold;" >{{this.goal}}</span>
-                            <span class="fs-2" style="margin-left: 10%">-</span>
-                            <span class="fs-2" style="margin-left: 10%">{{this.totalCalories}}</span>
-                            <span class="fs-2" style="margin-left: 10%">+</span>
-                            <span class="fs-2" style="margin-left: 10%">{{this.totalCaloriesExercises}}</span>
-                            <span class="fs-2" style="margin-left: 10%">=</span>
-                            <span class="fs-2" style="margin-left: 10%">{{this.remainingCalories}}</span>
+                        <div class="row column-card" style="margin-top: 2%; text-align: center;">
+                            <span class="fs-2 col-2" style="font-weight: bold;" >{{this.goal}}</span>
+                            <span class="fs-2 col-1" >-</span>
+                            <span class="fs-2 col-2" >{{this.totalCalories}}</span>
+                            <span class="fs-2 col-1" >+</span>
+                            <span class="fs-2 col-2" >{{this.totalCaloriesExercises}}</span>
+                            <span class="fs-2 col-1" >=</span>
+                            <span class="fs-2 col-2" >{{this.remainingCalories}}</span>
                         </div>
-                        <div class="column-card" style="margin-top: 1%;">
-                            <span class="fs-2" style="font-weight: bold;">Goal</span>
-                            <span class="fs-2" style="margin-left: 21%">Food</span>
-                            <span class="fs-2" style="margin-left: 20%">Exercise</span>
-                            <span class="fs-2" style="margin-left: 17%">Remaining</span>
+                        <div class="row column-card" style="margin-top: 1%; text-align: center;">
+                            <span class="fs-2 col-2" style="font-weight: bold;">Goal</span>
+                            <span class="fs-2 col-1"></span>
+                            <span class="fs-2 col-2">Food</span>
+                            <span class="col-1"></span>
+                            <span class="fs-2 col-2">Exercise</span>
+                            <span class="col-1"></span>
+                            <span class="fs-2 col-2">Remaining</span>
                         </div>
-                    </div>
+                    <!-- </div> -->
                     <hr style="margin-top: 1%; width: 95%;">
 
                     <div class="split left">
@@ -144,7 +147,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="column-card" style="margin-top: 10%;">
+                            <div class="column-card" style="margin-top: 3%;">
                                 <span class="fs-4" style="margin-left: 1%; font-weight: bold;">Exercises</span>
                                 <span class="fs-4" style="float: right">{{totalCaloriesExercises}}</span>
                             </div>

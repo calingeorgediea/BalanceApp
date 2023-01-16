@@ -15,8 +15,8 @@ export class EditUserModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
     this.form = new FormGroup({
-      age: new FormControl(data != null ? data.age : null, Validators.compose([Validators.required])),
-      height: new FormControl(data != null ? data.height : null, Validators.compose([Validators.required])),
+      age: new FormControl(data != null ? data.age : null, Validators.compose([Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])),
+      height: new FormControl(data != null ? data.height : null, Validators.compose([Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])),
       activityLevel: new FormControl(null, Validators.compose([Validators.required])),
     });
   }

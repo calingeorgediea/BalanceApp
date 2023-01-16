@@ -1,7 +1,7 @@
 <div *ngIf="loggedIn else elseBlock">
     <div class="container-fluid ps-md-0">
         <div class="row">
-            <div class="d-none d-md-flex col-md-4 col-lg-2">
+            <div class="d-none d-md-flex col-md-4 col-lg-2 menu">
                 <app-side-menu></app-side-menu>
             </div>
             <div *ngIf="!this.hasGoalSet else elseGoalSetBlock" class="col-md-8 col-lg-10 content">

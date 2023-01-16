@@ -19,8 +19,8 @@ export class AddFoodModalComponent implements OnInit {
       this.form = new FormGroup({
         name: new FormControl(data != null ? data.name : null, Validators.compose([Validators.required])),
         when: new FormControl(data != null ? data.when : null, Validators.compose([Validators.required])),
-        calories: new FormControl(data != null ? data.calories : null, Validators.compose([Validators.required])),
-        quantity: new FormControl(null, Validators.compose([Validators.required])),
+        calories: new FormControl(data != null ? data.calories : null, Validators.compose([Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])),
+        quantity: new FormControl(null, Validators.compose([Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])),
       });
 
       if (this.form.get('name')!.value == null) {

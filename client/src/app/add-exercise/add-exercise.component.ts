@@ -13,7 +13,7 @@ export class AddExerciseComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<AddExerciseComponent>) { 
     this.form = new FormGroup({
       name: new FormControl(null, Validators.compose([Validators.required])),
-      calories: new FormControl(null, Validators.compose([Validators.required])),
+      calories: new FormControl(null, Validators.compose([Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)])),
     });
   }
 
