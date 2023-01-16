@@ -12,7 +12,7 @@ export class AddWeightModalComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<AddWeightModalComponent>,) {
     this.form = new FormGroup({
-      weight: new FormControl(null, Validators.compose([Validators.required]))
+      weight: new FormControl(null, Validators.compose([Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]))
     });
    }
 
