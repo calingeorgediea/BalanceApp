@@ -63,15 +63,15 @@ export class DiaryComponent implements OnInit {
 
       for (let r of res) {
         if (r.when === 'breakfast') {
-          this.foodBreakfast.push({name: r.name, calories: r.kcal / 100 * r.qty});
+          this.foodBreakfast.push({name: r.name, calories: r.kcal / 100 * r.qty, id: r.id});
         } else if (r.when === 'lunch') {
-          this.foodLunch.push({name: r.name, calories: r.kcal / 100 * r.qty});
+          this.foodLunch.push({name: r.name, calories: r.kcal / 100 * r.qty, id: r.id});
         } else if (r.when === 'dinner') {
-          this.foodDinner.push({name: r.name, calories: r.kcal / 100 * r.qty});
+          this.foodDinner.push({name: r.name, calories: r.kcal / 100 * r.qty, id: r.id});
         } else if (r.when === 'snacks') {
-          this.foodSnacks.push({name: r.name, calories: r.kcal / 100 * r.qty});
+          this.foodSnacks.push({name: r.name, calories: r.kcal / 100 * r.qty, id: r.id});
         } else if (r.when === 'exercise') {
-          this.exercises.push({name: r.name, calories: r.kcal});
+          this.exercises.push({name: r.name, calories: r.kcal, id: r.id});
         }
       }
       this.listInfoAboutMe();
@@ -139,44 +139,83 @@ export class DiaryComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result.data.name);
-        // Call API
+        console.log(result.data);
+
+        this.auth.addExercise(this.token, result.data.name, result.data.calories).subscribe(res => {
+          console.log(res);
+          this.auth.addExerciseInDiary(this.token, 'exercise', res.food._id).subscribe(res => {
+            console.log(res);
+            window.location.reload();
+          }, error => {console.log(error)});
+
+        }, error => {console.log(error)});
       }
+
     });
   }
 
   removeFoodBreakfast(i: any){
-    if (i > -1){
-      this.foodBreakfast.splice(i, 1);
-      this.listInfoAboutMe();
+    if (i > -1) {
+      let food = this.foodBreakfast.splice(i, 1);
+
+      this.auth.deleteFoodFromDiary(this.token, food[0].id).subscribe(res => {
+        console.log(res);
+        this.listInfoAboutMe(); 
+      },
+        error => {console.log(error)
+      });
     }
   }
 
   removeFoodLunch(i: any){
-    if (i > -1){
-      this.foodLunch.splice(i, 1);
-      this.listInfoAboutMe();
+    if (i > -1) {
+      let food = this.foodLunch.splice(i, 1);
+
+      this.auth.deleteFoodFromDiary(this.token, food[0].id).subscribe(res => {
+        console.log(res);
+        this.listInfoAboutMe(); 
+      },
+        error => {console.log(error)
+      });
     }
   }
 
   removeFoodDinner(i: any){
-    if (i > -1){
-      this.foodDinner.splice(i, 1);
-      this.listInfoAboutMe();
+    if (i > -1) {
+      let food = this.foodDinner.splice(i, 1);
+
+      this.auth.deleteFoodFromDiary(this.token, food[0].id).subscribe(res => {
+        console.log(res);
+        this.listInfoAboutMe(); 
+      },
+        error => {console.log(error)
+      });
     }
   }
 
   removeFoodSnack(i: any){
-    if (i > -1){
-      this.foodSnacks.splice(i, 1);
-      this.listInfoAboutMe();
-    };
+    if (i > -1) {
+      let food = this.foodSnacks.splice(i, 1);
+
+      this.auth.deleteFoodFromDiary(this.token, food[0].id).subscribe(res => {
+        console.log(res);
+        this.listInfoAboutMe(); 
+      },
+        error => {console.log(error)
+      });
+    }
   }
 
   removeExercise(i: any){
-    if (i > -1){
-      this.exercises.splice(i, 1);
-      this.listInfoAboutMe();
+    if (i > -1) {
+      let exercise = this.exercises.splice(i, 1);
+
+      this.auth.deleteFoodFromDiary(this.token, exercise[0].id).subscribe(res => {
+        console.log(res);
+        this.listInfoAboutMe(); 
+      },
+        error => {console.log(error)
+      });
     }
   }
 
@@ -192,7 +231,7 @@ export class DiaryComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('intra');
       if (result) {
-
+        console.log(result);
       }
     });
   }
