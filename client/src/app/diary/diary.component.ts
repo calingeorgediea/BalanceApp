@@ -31,6 +31,7 @@ export class DiaryComponent implements OnInit {
   public foodDinner: Array<any> = [];
   public foodSnacks: Array<any> = [];
   public exercises: Array<any> = [];
+  public hideButtons: boolean = false;
 
   constructor(
     public auth: BackendApiService,
@@ -237,7 +238,13 @@ export class DiaryComponent implements OnInit {
   }
 
   handleDateChange(e: any) {
-    this.initData(e.value);
+    this.date = e.value;
+    this.initData(this.date);
+    if (this.date.toLocaleDateString() != new Date().toLocaleDateString()) {
+      this.hideButtons = true;
+    } else {
+      this.hideButtons = false;
+    }
   }
 
 }
