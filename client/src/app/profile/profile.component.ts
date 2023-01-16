@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit {
           dataPoints: this.datapoints
         }]
       }
-      this.currentWeight = this.weightEntries[this.weightEntries.length-1].weight;
+      this.currentWeight = this.weightEntries[0].weight;
     },
       error => {console.log(error)
     });
