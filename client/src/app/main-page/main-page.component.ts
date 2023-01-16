@@ -47,7 +47,7 @@ export class MainPageComponent implements OnInit {
         console.log(res);
         for (let r of res) {
           if (r.when != 'exercise') {
-            this.caloriesConsumed += r.kcal / 100 * r.qty;
+            this.caloriesConsumed += Math.ceil(r.kcal / 100 * r.qty);
           } else {
             this.exerciseCalories += r.kcal;
           }
