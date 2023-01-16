@@ -106,6 +106,7 @@ export class FoodListModalComponent implements OnInit {
         } else {
             this.auth.addFoodInDiary(this.token, result.data.when, result.data.quantity, result.foodId).subscribe(res => {
               console.log(res);
+              window.location.reload();
             }, error => {console.log(error)});
         }
 
