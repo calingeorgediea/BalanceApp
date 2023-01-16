@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   public height!: any | null;
   public kcal!: any | null;
   public activityLevel: any | null;
+  public activityLevelString: string | null;
   public gender: any | null;
   public weightEntries: Array<any> = [];
 
@@ -126,6 +127,16 @@ export class ProfileComponent implements OnInit {
       this.kcal = this.infoAboutMe["kcalGoal"];
       this.activityLevel = this.infoAboutMe["activity_level"];
       this.gender = this.infoAboutMe["gender"];
+
+      if (this.activityLevel === 0) {
+        this.activityLevelString = 'Sedentary';
+      } else if (this.activityLevel === 1) {
+          this.activityLevelString = 'Light activity';
+      } else if (this.activityLevel === 2) {
+          this.activityLevelString = 'Active';
+      } else if (this.activityLevel === 3) {
+          this.activityLevelString = 'Vigorous activity';
+      }
     },
       error => {console.log(error)
   });

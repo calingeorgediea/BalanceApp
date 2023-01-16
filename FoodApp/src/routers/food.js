@@ -22,6 +22,7 @@ router.post('/food', cors(), async (req,res) => {
 router.get('/food', async (req,res) => {
     var match = {}
     var sort = {}
+    console.log('intra aici');
     if(req.query.category) {
         match.category = req.query.category.split(",")
     }

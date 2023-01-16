@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AddFoodModalComponent implements OnInit {
   form: FormGroup;
+  foodId: string | null;
 
   constructor(
     private dialogRef: MatDialogRef<AddFoodModalComponent>,
@@ -21,6 +22,12 @@ export class AddFoodModalComponent implements OnInit {
         calories: new FormControl(data != null ? data.calories : null, Validators.compose([Validators.required])),
         quantity: new FormControl(null, Validators.compose([Validators.required])),
       });
+
+      if (this.form.get('name')!.value == null) {
+        this.foodId = null;
+      } else {
+        this.foodId = data.id;
+      }
     }
 
   ngOnInit(): void {
@@ -40,7 +47,7 @@ export class AddFoodModalComponent implements OnInit {
       return;
     }
 
-    this.dialogRef.close({ data: this.form.value });
+    this.dialogRef.close({ data: this.form.value, foodId: this.foodId });
   }
 
   onNoClick(): void {

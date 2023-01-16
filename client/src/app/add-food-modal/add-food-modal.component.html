@@ -14,7 +14,7 @@
             <div class="row">
                 <mat-label>Name:</mat-label>
                 <mat-form-field>
-                    <input matInput formControlName="name" [readonly]="data ? true: false" required>
+                    <input matInput formControlName="name" required>
                 </mat-form-field>
                 <!-- <mat-error *ngIf="form.get('name')?.hasError('required')">
                     This field is required
@@ -24,7 +24,7 @@
             <div class="row">
                 <mat-label>When:</mat-label>
                 <mat-form-field>
-                    <input matInput formControlName="when" [readonly]="data ? true: false" required>
+                    <input matInput formControlName="when" required>
                 </mat-form-field>
                 <!-- <mat-error *ngIf="form.get('when')?.hasError('required')">
                     This field is required
@@ -34,7 +34,7 @@
             <div class="row">
                 <mat-label>Calories:</mat-label>
                 <mat-form-field>
-                    <input matInput formControlName="calories" [readonly]="data ? true: false" required>
+                    <input matInput formControlName="calories" required>
                 </mat-form-field>
                 <!-- <mat-error *ngIf="form.get('calories')?.hasError('required')">
                     This field is required

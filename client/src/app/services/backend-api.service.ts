@@ -77,7 +77,15 @@ export class BackendApiService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.post<any>(backendPathFood + 'food', {headers: headers})
+    return this.http.post<any>(backendPathFood + 'food', {name: name, description: description, kcal: kcal, category: category}, {headers: headers})
+  }
+
+  addExercise(auth_token: string | null, name: string | null, kcal: string | null) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.post<any>(backendPathFood + 'food', {name: name, description: 'sport', kcal: kcal, category: 'sport'}, {headers: headers})
   }
 
   getAllFoods(auth_token: string | null) {
@@ -96,18 +104,30 @@ export class BackendApiService {
     return this.http.post<any>(backendPathUser + 'me/food/' + food_id, {when: when, qty: qty}, {headers: headers})
   }
 
+  addExerciseInDiary(auth_token: string | null, when: string | null, exercise_id: string | null,) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.post<any>(backendPathUser + 'me/food/' + exercise_id, {when: when}, {headers: headers})
+  }
+
   getAllFoodsFromDiaryOneDay(auth_token: string | null, date: string | null) {
 
-    // let params = new HttpParams();
-    // const encodedDateA = encodeURIComponent(date!);
-
-    // params = params.append('dateA', encodedDateA);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
 
     return this.http.get<any>(backendPathUser + 'me/food?dateA=[$eq](' + date + ')', {headers: headers})
+  }
+
+  deleteFoodFromDiary(auth_token: string | null, food_id: string | null,) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.delete<any>(backendPathUser + 'me/food/' + food_id, {headers: headers})
   }
   
 }

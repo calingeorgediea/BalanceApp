@@ -63,7 +63,7 @@ router.post('/me/food/:id', auth, async (req,res) => {
                 res.status(400).send()
             }
         })
-        res.send(200).send(food)
+        res.status(200).end()
     } catch(e) {
         res.status(500).send()
     }
