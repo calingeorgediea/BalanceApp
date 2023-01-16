@@ -20,11 +20,13 @@ export class ProfileComponent implements OnInit {
   public currentWeight!: any | null;
   public infoAboutMe!: any | null;
   public goal!: any | null;
+  public goalUpdate!: any | null;
   public name!: string | null;
   public age!: any | null;
   public height!: any | null;
   public kcal!: any | null;
   public activityLevel: any | null;
+  public gender: any | null;
   public weightEntries: Array<any> = [];
 
   public weightEntriesX: Array<any> = [];	
@@ -122,7 +124,8 @@ export class ProfileComponent implements OnInit {
       this.age = this.infoAboutMe["age"];
       this.height = this.infoAboutMe["height"];
       this.kcal = this.infoAboutMe["kcalGoal"];
-      this.activityLevel = this.infoAboutMe["activity_level"]
+      this.activityLevel = this.infoAboutMe["activity_level"];
+      this.gender = this.infoAboutMe["gender"];
     },
       error => {console.log(error)
   });
@@ -135,10 +138,26 @@ export class ProfileComponent implements OnInit {
       width: '500px',
     });
 
+    if (this.goal === 'Lose Weight') {
+      this.goal = 0;
+    } else if (this.goal === 'Maintain') {
+      this.goal = 1;
+    } else {
+      this.goal = 2;
+    }
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result.data.weight);
-        // Call API
+        console.log('aaa: ' + result.data.weight);
+        this.auth.updateUserInfo(this.token, this.age, result.data.weight, this.height, this.activityLevel, this.gender, this.goal, this.kcal).subscribe(res => {
+          console.log(res);
+  
+          this.auth.addWeightEntry(this.token, result.data.weight, this.currentUserId).subscribe(res => {
+            console.log(res);
+            window.location.reload();
+          }, error => {console.log(error); return;});
+  
+        }, error => {console.log(error); return;});
       }
     });
   }
@@ -152,8 +171,14 @@ export class ProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result.data.goal);
-        // Call API
+        this.auth.getKcalGoal(this.token, this.age, this.currentWeight, this.height, this.activityLevel, this.gender, result.data.goal).subscribe(res => {
+          console.log(res);
+          this.kcal = res.result;
+          this.auth.updateUserInfo(this.token, this.age, this.currentWeight, this.height, this.activityLevel, this.gender, result.data.goal, this.kcal).subscribe(res => {
+            console.log(res);
+            window.location.reload();
+          }, error => {console.log(error); return;});
+        }, error => {console.log(error); return;});
       }
     });
   }
@@ -166,14 +191,27 @@ export class ProfileComponent implements OnInit {
       data:  {
         age: this.age,
         height: this.height,
-        acticityLevel: this.activityLevel
+        activityLevel: this.activityLevel
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result.data.age);
-        // Call API
+        if (this.goal === 'Lose Weight') {
+          this.goalUpdate = 0;
+        } else if (this.goal === 'Maintain') {
+          this.goalUpdate = 1;
+        } else {
+          this.goalUpdate = 2;
+        }
+        this.auth.getKcalGoal(this.token, result.data.age, this.currentWeight, result.data.height, result.data.activityLevel, this.gender, this.goalUpdate).subscribe(res => {
+          console.log(res);
+          this.kcal = res.result;
+          this.auth.updateUserInfo(this.token, result.data.age, this.currentWeight, result.data.height, result.data.activityLevel, this.gender, this.goalUpdate, this.kcal).subscribe(res => {
+            console.log(res);
+            window.location.reload();
+          }, error => {console.log(error); return;});
+        }, error => {console.log(error); return;});
       }
     });
   }
