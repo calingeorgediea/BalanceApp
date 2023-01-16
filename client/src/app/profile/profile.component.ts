@@ -3,6 +3,7 @@ import { BackendApiService } from '../services/backend-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddWeightModalComponent } from '../add-weight-modal/add-weight-modal.component';
 import { ChangeGoalModalComponent } from '../change-goal-modal/change-goal-modal.component';
+import { EditUserModalComponent } from '../edit-user-modal/edit-user-modal.component';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
   public age!: any | null;
   public height!: any | null;
   public kcal!: any | null;
+  public activityLevel: any | null;
   public weightEntries: Array<any> = [];
 
   public weightEntriesX: Array<any> = [];	
@@ -120,6 +122,7 @@ export class ProfileComponent implements OnInit {
       this.age = this.infoAboutMe["age"];
       this.height = this.infoAboutMe["height"];
       this.kcal = this.infoAboutMe["kcalGoal"];
+      this.activityLevel = this.infoAboutMe["activity_level"]
     },
       error => {console.log(error)
   });
@@ -155,6 +158,21 @@ export class ProfileComponent implements OnInit {
 
   editInformation(){
     console.log('edit info');
+    const dialogRef = this.dialog.open(EditUserModalComponent, {
+      height: '450px',
+      width: '600px',
+      data:  {
+        age: this.age,
+        height: this.height,
+        acticityLevel: this.activityLevel
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+
+      }
+    });
   }
 
   padTo2Digits(num: any) {

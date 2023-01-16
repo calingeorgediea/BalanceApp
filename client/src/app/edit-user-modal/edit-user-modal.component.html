@@ -1,0 +1,47 @@
+<button mat-icon-button class="close-button" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+</button> 
+
+<div class="modal-header header-footer"> 
+    <div class="modal-title text-white fs-2">
+        Edit profile
+    </div>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="form-group">
+            <div class="row">
+                <mat-label>Age:</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="age" required>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-label>Height:</mat-label>
+                <mat-form-field>
+                    <input matInput formControlName="height" required>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-label>Choose your activity level</mat-label>
+                <mat-form-field>
+                    <mat-select formControlName="activityLevel" required>
+                        <mat-option value="0">Sedentary</mat-option>
+                        <mat-option value="1">Light activity</mat-option>
+                        <mat-option value="2">Active</mat-option>
+                        <mat-option value="3">Vigorous activity</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="save-button-div">
+    <button mat-button class="btn mat-white-button btn-block" (click)="onClick()">
+      Save
+    </button>
+</div>
