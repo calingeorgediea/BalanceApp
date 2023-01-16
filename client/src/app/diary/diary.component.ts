@@ -15,6 +15,7 @@ export class DiaryComponent implements OnInit {
   public token!: string | null;
   public infoAboutMe!: any | null;
   public loggedIn: boolean = false;
+  public date: Date = new Date;
   public goal = 0;
   public totalCaloriesBreakfast = 0;
   public totalCaloriesLunch = 0;

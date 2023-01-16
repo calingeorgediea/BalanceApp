@@ -28,6 +28,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { AddFoodModalComponent } from './add-food-modal/add-food-modal.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
 import { AddWeightModalComponent } from './add-weight-modal/add-weight-modal.component';
@@ -71,7 +72,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     MatPaginatorModule,
     MatInputModule,
     MatSortModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
