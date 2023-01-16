@@ -42,9 +42,7 @@ router.post('/me/food/:id', auth, async (req,res) => {
         const food_id = req.params.id
         foodservice(food_id, async (error, {name,kcal,id} = {}) => {
             if(error){
-                log(chalk.red.inverse("ERROR"));
                 console.log(error)
-                log(chalk.purple.inverse(error));
             }
 
             try {

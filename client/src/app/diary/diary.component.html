@@ -72,7 +72,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button mat-raised-button color="primary" (click)="openFoodListDialog('breakfast')">Add Food</button>
+                                <div *ngIf="!this.hideButtons">
+                                    <button mat-raised-button color="primary" (click)="openFoodListDialog('breakfast')">Add Food</button>
+                                </div>
                             </div>
                         </div>
     
@@ -95,7 +97,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button mat-raised-button color="primary" (click)="openFoodListDialog('lunch')">Add Food</button>
+                                <div *ngIf="!this.hideButtons">
+                                    <button mat-raised-button color="primary" (click)="openFoodListDialog('lunch')">Add Food</button>
+                                </div>
                             </div>
                         </div>
     
@@ -118,7 +122,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button mat-raised-button color="primary" (click)="openFoodListDialog('dinner')">Add Food</button>
+                                <div *ngIf="!this.hideButtons">
+                                    <button mat-raised-button color="primary" (click)="openFoodListDialog('dinner')">Add Food</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -143,7 +149,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button mat-raised-button color="primary" (click)="openFoodListDialog('snacks')">Add Food</button>
+                                <div *ngIf="!this.hideButtons">
+                                    <button mat-raised-button color="primary" (click)="openFoodListDialog('snacks')">Add Food</button>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -165,7 +173,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button mat-raised-button color="primary" (click)="addExercise()">Add Exercise</button>
+                                <div *ngIf="!this.hideButtons">
+                                    <button mat-raised-button color="primary" (click)="addExercise()">Add Exercise</button>
+                                </div>
                             </div>
                         </div>
                     </div>
