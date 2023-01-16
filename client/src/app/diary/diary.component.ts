@@ -63,13 +63,13 @@ export class DiaryComponent implements OnInit {
 
       for (let r of res) {
         if (r.when === 'breakfast') {
-          this.foodBreakfast.push({name: r.name, calories: r.kcal / 100 * r.qty, id: r.id});
+          this.foodBreakfast.push({name: r.name, calories: Math.ceil(r.kcal / 100 * r.qty), id: r.id});
         } else if (r.when === 'lunch') {
-          this.foodLunch.push({name: r.name, calories: r.kcal / 100 * r.qty, id: r.id});
+          this.foodLunch.push({name: r.name, calories: Math.ceil(r.kcal / 100 * r.qty), id: r.id});
         } else if (r.when === 'dinner') {
-          this.foodDinner.push({name: r.name, calories: r.kcal / 100 * r.qty, id: r.id});
+          this.foodDinner.push({name: r.name, calories: Math.ceil(r.kcal / 100 * r.qty), id: r.id});
         } else if (r.when === 'snacks') {
-          this.foodSnacks.push({name: r.name, calories: r.kcal / 100 * r.qty, id: r.id});
+          this.foodSnacks.push({name: r.name, calories: Math.ceil(r.kcal / 100 * r.qty), id: r.id});
         } else if (r.when === 'exercise') {
           this.exercises.push({name: r.name, calories: r.kcal, id: r.id});
         }

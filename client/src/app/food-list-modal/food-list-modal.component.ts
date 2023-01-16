@@ -99,6 +99,7 @@ export class FoodListModalComponent implements OnInit {
             console.log(res);
             this.auth.addFoodInDiary(this.token, result.data.when, result.data.quantity, res.food._id).subscribe(res => {
               console.log(res);
+              window.location.reload();
             }, error => {console.log(error)});
 
           }, error => {console.log(error)});
@@ -109,7 +110,6 @@ export class FoodListModalComponent implements OnInit {
         }
 
         this.selectFoodDialogRef.close();
-        window.location.reload();
       }
     });
   }
